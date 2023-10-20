@@ -2,13 +2,17 @@
 
 
 
-Network Working Group                                      J. Ros-Giralt
-Internet-Draft                                    Your Organization Here
-Intended status: Informational                           16 October 2023
-Expires: 18 April 2024
+Network Working Group                                     S. Randriamasy
+Internet-Draft                                           Nokia Bell Labs
+Intended status: Informational                           L. M. Contreras
+Expires: 22 April 2024                                        Telefonica
+                                                           J. Ros-Giralt
+                                                   Qualcomm Europe, Inc.
+                                                         20 October 2023
 
 
-                           TODO - Your title
+ Joint Exposure of Network and Compute Information for Infrastructure-
+               Aware Application Placement and Selection
               draft-xxx-operational-compute-metrics-latest
 
 Abstract
@@ -43,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 April 2024.
+   This Internet-Draft will expire on 22 April 2024.
 
 Copyright Notice
 
@@ -63,11 +67,16 @@ Table of Contents
 
    1.  Introduction
    2.  Conventions and Definitions
-   3.  Security Considerations
-   4.  IANA Considerations
-   5.  Normative References
+   3.  Motivations
+   4.  Guiding Principles
+   5.  Needs
+   6.  Related Work
+   7.  GAP Analysis
+   8.  Security Considerations
+   9.  IANA Considerations
+   10. Normative References
    Acknowledgments
-   Author's Address
+   Authors' Addresses
 
 1.  Introduction
 
@@ -81,15 +90,35 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-3.  Security Considerations
+3.  Motivations
+
+   TODO
+
+4.  Guiding Principles
+
+   TODO
+
+5.  Needs
+
+   TODO
+
+6.  Related Work
+
+   TODO
+
+7.  GAP Analysis
+
+   TODO
+
+8.  Security Considerations
 
    TODO Security
 
-4.  IANA Considerations
+9.  IANA Considerations
 
    This document has no IANA actions.
 
-5.  Normative References
+10.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -104,8 +133,18 @@ Acknowledgments
 
    TODO acknowledge.
 
-Author's Address
+Authors' Addresses
+
+   S. Randriamasy
+   Nokia Bell Labs
+   Email: sabine.randriamasy@nokia-bell-labs.com
+
+
+   L. M. Contreras
+   Telefonica
+   Email: luismiguel.contrerasmurillo@telefonica.com
+
 
    Jordi Ros-Giralt
-   Your Organization Here
+   Qualcomm Europe, Inc.
    Email: jros@qti.qualcomm.com
