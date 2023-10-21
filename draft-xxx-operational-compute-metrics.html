@@ -1033,7 +1033,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Randriamasy, et al.</td>
-<td class="center">Expires 22 April 2024</td>
+<td class="center">Expires 23 April 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1046,12 +1046,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-xxx-operational-compute-metrics-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-10-20" class="published">20 October 2023</time>
+<time datetime="2023-10-21" class="published">21 October 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-04-22">22 April 2024</time></dd>
+<dd class="expires"><time datetime="2024-04-23">23 April 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1104,7 +1104,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 22 April 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 23 April 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1143,10 +1143,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-motivations" class="internal xref">Motivations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-guiding-principles" class="internal xref">Guiding Principles</a></p>
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-problem-space-and-needs" class="internal xref">Problem Space and Needs</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-needs" class="internal xref">Needs</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-guiding-principles" class="internal xref">Guiding Principles</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-related-work" class="internal xref">Related Work</a></p>
@@ -1200,18 +1200,69 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-3-1">TODO<a href="#section-3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="guiding-principles">
+<div id="problem-space-and-needs">
 <section id="section-4">
-      <h2 id="name-guiding-principles">
-<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-guiding-principles" class="section-name selfRef">Guiding Principles</a>
+      <h2 id="name-problem-space-and-needs">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-problem-space-and-needs" class="section-name selfRef">Problem Space and Needs</a>
       </h2>
-<p id="section-4-1">TODO<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-1">Visibility and exposure to the application of both (1) network and (2) compute
+resources is critical to
+enable the proper functioning of the new class of services
+arising at the edge (distributed AI, driverless vehicles,
+AR/VR, etc.). To understand the problem space and the capabilities
+that are lacking in today's protocol interfaces necessary to
+properly enable these new services, we focus on the simple life cycle of
+service deployment and selection (<a href="#lifecycle" class="auto internal xref">Figure 1</a>).<a href="#section-4-1" class="pilcrow">¶</a></p>
+<span id="name-service-life-cycle"></span><div id="lifecycle">
+<figure id="figure-1">
+        <div class="alignLeft art-text artwork" id="section-4-2.1">
+<pre>
+ +-------------+      +--------------+      +-------------+
+ |             |      |              |      |             |
+ |  New        +------&gt;  Service     +------&gt;  Service    |
+ |  Service    |      |  Deployment  |      |  Selection  |
+ |             |      |              |      |             |
+ +-------------+      +--------------+      +-------------+
+</pre>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-service-life-cycle" class="selfRef">Service life cycle.</a>
+        </figcaption></figure>
+</div>
+<p id="section-4-3">Compute nodes are deployed at the edge (e.g., co-located
+in a 5G base station) to provide computing services that are
+close to users with the goal to (1) reduce latency, (2) increase
+communication bandwidth, (3) enable privacy/personalization
+(e.g., federated AI learning), and (4) reduce cloud costs and
+energy. Services are deployed on the communication and compute
+infrastructure through a two-phase life cycle that involves first a
+service <em>deployment stage</em> and then a <em>service selection</em> stage
+(<a href="#lifecycle" class="auto internal xref">Figure 1</a>).<a href="#section-4-3" class="pilcrow">¶</a></p>
+<p id="section-4-4"><strong>Service deployment.</strong> This phase is carried out by the service
+provider, and consists in the deployment of a new service
+(e.g., a distributed AI training/inference, an XR/AR service, etc.)
+on the communication and compute infrastructure. The service
+provider needs to properly size the amount of communication and compute
+resources assigned to this new service to meet the expected user
+demand. The decision on where the service is deployed and how
+many resources are requested from the infrastructure depends on
+the levels of QoE that the provider wants to guarantee to the
+user base. To make a proper deployment decision, the provider
+must have visibility on the resources available from
+the infrastructure, including communication resources (e.g., latency and
+bandwidth) and compute (e.g., CPU, GPU, memory, storage). For instance,
+to run a Large Language Model (LLM) with 175 billion parameters, a total
+aggregated memory of 400GB and 8 GPUs are needed. The service provider needs
+an interface to query the infrastructure, extract the available compute
+and communication resources, and decide which subset of resources are
+needed to run the service.<a href="#section-4-4" class="pilcrow">¶</a></p>
+<p id="section-4-5"><strong>Service selection.</strong><a href="#section-4-5" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="needs">
+<div id="guiding-principles">
 <section id="section-5">
-      <h2 id="name-needs">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-needs" class="section-name selfRef">Needs</a>
+      <h2 id="name-guiding-principles">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-guiding-principles" class="section-name selfRef">Guiding Principles</a>
       </h2>
 <p id="section-5-1">TODO<a href="#section-5-1" class="pilcrow">¶</a></p>
 </section>
