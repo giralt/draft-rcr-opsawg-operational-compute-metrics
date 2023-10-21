@@ -12,7 +12,7 @@ Expires: 23 April 2024                                        Telefonica
 
 
  Joint Exposure of Network and Compute Information for Infrastructure-
-               Aware Application Placement and Selection
+                        Aware Service Deployment
               draft-xxx-operational-compute-metrics-latest
 
 Abstract
