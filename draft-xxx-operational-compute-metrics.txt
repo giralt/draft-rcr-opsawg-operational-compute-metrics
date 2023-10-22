@@ -5,10 +5,10 @@
 Network Working Group                                     S. Randriamasy
 Internet-Draft                                           Nokia Bell Labs
 Intended status: Informational                           L. M. Contreras
-Expires: 23 April 2024                                        Telefonica
+Expires: 24 April 2024                                        Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
-                                                         21 October 2023
+                                                         22 October 2023
 
 
  Joint Exposure of Network and Compute Information for Infrastructure-
@@ -47,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 April 2024.
+   This Internet-Draft will expire on 24 April 2024.
 
 Copyright Notice
 
@@ -96,13 +96,13 @@ Table of Contents
 
 4.  Problem Space and Needs
 
-   Visibility and exposure to the application of both (1) network and
-   (2) compute resources is critical to enable the proper functioning of
+   Visibility and exposure of both (1) network and (2) compute resources
+   to the application is critical to enable the proper functioning of
    the new class of services arising at the edge (e.g., distributed AI,
    driverless vehicles, AR/VR, etc.).  To understand the problem space
    and the capabilities that are lacking in today's protocol interfaces
-   necessary to enable these new services, we focus on the life cycle of
-   a service.
+   needed to enable these new services, we focus on the life cycle of a
+   service.
 
    At the edge, compute nodes are deployed near communication nodes
    (e.g., co-located in a 5G base station) to provide computing services
@@ -156,22 +156,42 @@ Table of Contents
    (e.g., bandwidth and latency) of the available paths.  Similar to the
    service deployment case, the service provider needs an interface to
    query the infrastructure and extract the available compute and
-   communication resources, with the goal to make an informed node and
-   path selection decision.  It is also important to note that, ideally,
-   the node and path selection decisions should be jointly optimized,
-   since in general the best end-to-end performance is achieved by
-   jointly taking into account both decisions.  In some cases, however,
-   such decisions may be owned by different players.  For instance, in
-   some network environments, the path selection may be decided by the
+   communication resources, with the goal to make informed node and path
+   selection decisions.  It is also important to note that, ideally, the
+   node and path selection decisions should be jointly optimized, since
+   in general the best end-to-end performance is achieved by jointly
+   taking into account both decisions.  In some cases, however, such
+   decisions may be owned by different players.  For instance, in some
+   network environments, the path selection may be decided by the
    network operator, wheres the node selection may be decided by the
    application.  Even in these cases, it is crucial to have a proper
    interface (for both the network operator and the service provider) to
    query the available compute and communication resources from the
    system.
 
+   Table 1 summarizes the problem space, the information that needs to
+   be exposed, and the stakeholders that need this information.
+
+     +====================+===============+==========================+
+     |     Action to take |  Information  | Who needs it             |
+     |                    |     needed    |                          |
+     +====================+===============+==========================+
+     |  Service placement |  Compute and  | Service provider         |
+     |                    | communication |                          |
+     +--------------------+---------------+--------------------------+
+     | Service selection/ |    Compute    | Network/service provider |
+     |     node selection |               | and/or application       |
+     +--------------------+---------------+--------------------------+
+     | Service selection/ | Communication | Network/service and/or   |
+     |     path selection |               | application              |
+     +--------------------+---------------+--------------------------+
+
+              Table 1: Problem space, needs, and stakeholders.
+
 5.  Guiding Principles
 
-   TODO
+   The driving principles for designing an API to jointly extract
+   network and compute information are as follows:
 
 6.  Related Work
 

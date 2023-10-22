@@ -1033,7 +1033,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Randriamasy, et al.</td>
-<td class="center">Expires 23 April 2024</td>
+<td class="center">Expires 24 April 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1046,12 +1046,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-xxx-operational-compute-metrics-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-10-21" class="published">21 October 2023</time>
+<time datetime="2023-10-22" class="published">22 October 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-04-23">23 April 2024</time></dd>
+<dd class="expires"><time datetime="2024-04-24">24 April 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1104,7 +1104,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 23 April 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 24 April 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1205,12 +1205,12 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-problem-space-and-needs">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-problem-space-and-needs" class="section-name selfRef">Problem Space and Needs</a>
       </h2>
-<p id="section-4-1">Visibility and exposure to the application of both (1) network and (2) compute
-resources is critical to
+<p id="section-4-1">Visibility and exposure of both (1) network and (2) compute
+resources to the application is critical to
 enable the proper functioning of the new class of services
 arising at the edge (e.g., distributed AI, driverless vehicles,
 AR/VR, etc.). To understand the problem space and the capabilities
-that are lacking in today's protocol interfaces necessary to enable
+that are lacking in today's protocol interfaces needed to enable
 these new services, we focus on the life cycle of
 a service.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">At the edge, compute nodes
@@ -1271,7 +1271,7 @@ the application must decide which path it chooses to connect to the service.
 This decision depends on the communication properties (e.g., bandwidth and latency)
 of the available paths. Similar to the service deployment case,
 the service provider needs an interface to query the infrastructure and extract the available compute
-and communication resources, with the goal to make an informed node and path selection decision.
+and communication resources, with the goal to make informed node and path selection decisions.
 It is also important to note that, ideally, the node and path selection
 decisions should be jointly optimized, since in general the best end-to-end performance
 is achieved by jointly taking into account both decisions. In some cases, however,
@@ -1280,6 +1280,39 @@ environments, the path selection may be decided by the network operator,
 wheres the node selection may be decided by the application. Even in these cases,
 it is crucial to have a proper interface (for both the network operator and the service
 provider) to query the available compute and communication resources from the system.<a href="#section-4-5" class="pilcrow">¶</a></p>
+<p id="section-4-6"><a href="#prob_space" class="auto internal xref">Table 1</a> summarizes the problem space, the information that needs to be exposed, and the stakeholders that need this information.<a href="#section-4-6" class="pilcrow">¶</a></p>
+<span id="name-problem-space-needs-and-sta"></span><div id="prob_space">
+<table class="center" id="table-1">
+        <caption>
+<a href="#table-1" class="selfRef">Table 1</a>:
+<a href="#name-problem-space-needs-and-sta" class="selfRef">Problem space, needs, and stakeholders.</a>
+        </caption>
+<thead>
+          <tr>
+            <th class="text-right" rowspan="1" colspan="1">Action to take</th>
+            <th class="text-center" rowspan="1" colspan="1">Information needed</th>
+            <th class="text-left" rowspan="1" colspan="1">Who needs it</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-right" rowspan="1" colspan="1">Service placement</td>
+            <td class="text-center" rowspan="1" colspan="1">Compute and communication</td>
+            <td class="text-left" rowspan="1" colspan="1">Service provider</td>
+          </tr>
+          <tr>
+            <td class="text-right" rowspan="1" colspan="1">Service selection/node selection</td>
+            <td class="text-center" rowspan="1" colspan="1">Compute</td>
+            <td class="text-left" rowspan="1" colspan="1">Network/service provider and/or application</td>
+          </tr>
+          <tr>
+            <td class="text-right" rowspan="1" colspan="1">Service selection/path selection</td>
+            <td class="text-center" rowspan="1" colspan="1">Communication</td>
+            <td class="text-left" rowspan="1" colspan="1">Network/service and/or application</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
 </section>
 </div>
 <div id="guiding-principles">
@@ -1287,7 +1320,7 @@ provider) to query the available compute and communication resources from the sy
       <h2 id="name-guiding-principles">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-guiding-principles" class="section-name selfRef">Guiding Principles</a>
       </h2>
-<p id="section-5-1">TODO<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-1">The driving principles for designing an API to jointly extract network and compute information are as follows:<a href="#section-5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="related-work">
