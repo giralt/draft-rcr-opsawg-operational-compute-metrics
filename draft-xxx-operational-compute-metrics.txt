@@ -76,16 +76,15 @@ Table of Contents
 
    1.  Introduction
    2.  Conventions and Definitions
-   3.  Motivations
-   4.  Problem Space and Needs
-   5.  Guiding Principles
-   6.  Related Work
-   7.  GAP Analysis
-   8.  Security Considerations
-   9.  IANA Considerations
-   10. References
-     10.1.  Normative References
-     10.2.  Informative References
+   3.  Problem Space and Needs
+   4.  Guiding Principles
+   5.  Related Work
+   6.  GAP Analysis
+   7.  Security Considerations
+   8.  IANA Considerations
+   9.  References
+     9.1.  Normative References
+     9.2.  Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -124,7 +123,7 @@ Table of Contents
 
    This document proposes an initial approach towards a common
    understanding and exposure scheme for metrics reflecting compute
-   capabilities.  It aims at building on existing work in the IETF on
+   capabilities.  It aims at leveraging on existing work in the IETF on
    compute metrics definitions to build synergies.  It also aims at
    reaching out to working or research groups in the IETF that would
    consume such information and have particular requirements.
@@ -137,11 +136,7 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-3.  Motivations
-
-   TODO TEST ANOTHE CHANGE + COMMENTS CHANGE 2
-
-4.  Problem Space and Needs
+3.  Problem Space and Needs
 
    Visibility and exposure of both (1) network and (2) compute resources
    to the application is critical to enable the proper functioning of
@@ -235,7 +230,7 @@ Table of Contents
 
               Table 1: Problem space, needs, and stakeholders.
 
-5.  Guiding Principles
+4.  Guiding Principles
 
    The driving principles for designing an interface to jointly extract
    network and compute information are as follows:
@@ -248,8 +243,8 @@ Table of Contents
 
    *  Section 5.2 of [I-D.du-cats-computing-modeling-description]
       considers delay as a good metric, since it is easy to use in both
-      compute and communication domains.  RFC-to-be 9439 also defines
-      delay as part of the performance metrics.
+      compute and communication domains.  RFC 9439 also defines delay as
+      part of the performance metrics.
 
    *  Section 6 of [I-D.du-cats-computing-modeling-description] proposes
       to represent the network structure as graphs, which is similar to
@@ -265,7 +260,7 @@ Table of Contents
    provider and the client application for service placement or
    selection.
 
-6.  Related Work
+5.  Related Work
 
    Some existing work has explored compute-related metrics.  They can be
    categorized as follows:
@@ -275,7 +270,7 @@ Table of Contents
       management solutions (i.e., OpenStack, Kubernetes, etc) which
       administer the virtualization infrastructure, providing
       information about raw compute infrastructure metrics.
-      Furthermore, [NFV-TST] describes processor, memmory and network
+      Furthermore, [NFV-TST] describes processor, memory and network
       interface usage metrics.
 
    *  References providing compute virtualization metrics: [RFC7666]
@@ -293,7 +288,7 @@ Table of Contents
       itself but from where such compute infrastructure is topologically
       located.
 
-7.  GAP Analysis
+6.  GAP Analysis
 
    From this related work it is evident that compute-related metrics can
    serve several purposes, ranging from service instance instantiation
@@ -311,17 +306,17 @@ Table of Contents
    each of the operational concerns related to the different parts of a
    service life cycle.
 
-8.  Security Considerations
+7.  Security Considerations
 
    TODO Security
 
-9.  IANA Considerations
+8.  IANA Considerations
 
    This document has no IANA actions.
 
-10.  References
+9.  References
 
-10.1.  Normative References
+9.1.  Normative References
 
    [I-D.du-cats-computing-modeling-description]
               Du, Z., Fu, Y., Li, C., Huang, D., and Z. Fu, "Computing
@@ -355,7 +350,7 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-10.2.  Informative References
+9.2.  Informative References
 
    [I-D.contreras-alto-service-edge]
               Contreras, L. M., Randriamasy, S., Ros-Giralt, J., Perez,
