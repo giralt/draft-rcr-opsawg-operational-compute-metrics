@@ -13,7 +13,7 @@ Expires: 25 April 2024                                        Telefonica
 
  Joint Exposure of Network and Compute Information for Infrastructure-
                         Aware Service Deployment
-              draft-xxx-operational-compute-metrics-latest
+          draft-rcr-opsawg-operational-compute-metrics-latest
 
 Abstract
 
@@ -33,13 +33,15 @@ About This Document
    This note is to be removed before publishing as an RFC.
 
    The latest revision of this draft can be found at
-   https://giralt.github.io/draft-xxx-operational-compute-metrics/draft-
-   xxx-operational-compute-metrics.html.  Status information for this
-   document may be found at https://datatracker.ietf.org/doc/draft-xxx-
-   operational-compute-metrics/.
+   https://giralt.github.io/draft-rcr-opsawg-operational-compute-
+   metrics/draft-rcr-opsawg-operational-compute-metrics.html.  Status
+   information for this document may be found at
+   https://datatracker.ietf.org/doc/draft-rcr-opsawg-operational-
+   compute-metrics/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/giralt/draft-xxx-operational-compute-metrics.
+   https://github.com/giralt/draft-rcr-opsawg-operational-compute-
+   metrics.
 
 Status of This Memo
 
