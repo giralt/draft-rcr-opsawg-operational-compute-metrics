@@ -9,7 +9,16 @@
 <meta content="L. M. Contreras" name="author">
 <meta content="Jordi Ros-Giralt" name="author">
 <meta content="
-       TODO Abstract 
+       Service providers are starting to deploy computing capabilities
+across the network for hosting applications such as AR/VR, vehicle
+networks, IoT, and AI training, among others. In these distributed
+computing environments, information about computing and communication
+resources is necessary to determine both the proper deployment location of
+each application and the best server location on which to run it.
+This information is used by numerous different implementations with different
+interpretations. This document proposes an initial approach towards a
+common understanding and exposure scheme for metrics reflecting compute
+capabilities. 
     " name="description">
 <meta content="xml2rfc 3.18.2" name="generator">
 <meta content="next generation" name="keyword">
@@ -1072,7 +1081,16 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">Joint Exposure of Network and Compute Information for Infrastructure-Aware Service Deployment</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">TODO Abstract<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">Service providers are starting to deploy computing capabilities
+across the network for hosting applications such as AR/VR, vehicle
+networks, IoT, and AI training, among others. In these distributed
+computing environments, information about computing and communication
+resources is necessary to determine both the proper deployment location of
+each application and the best server location on which to run it.
+This information is used by numerous different implementations with different
+interpretations. This document proposes an initial approach towards a
+common understanding and exposure scheme for metrics reflecting compute
+capabilities.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1178,7 +1196,32 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">TODO Introduction<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-1">Operators are starting to deploy distributed computing environments
+in different parts of the network with the objective of addressing
+different service needs including latency, bandwidth, processing
+capabilities, storage, etc.
+This translates in the emergence of a
+number of data centers (both in the cloud and at the edge) of
+different sizes (e.g., large, medium, small) characterized by
+distinct dimension of CPUs, memory, and storage capabilities, as well
+as bandwidth capacity for forwarding the traffic generated in and out
+of the corresponding data center.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">The proliferation of the edge computing paradigm further increases
+the potential footprint and heterogeneity of the environments where a
+function or application can be deployed, resulting in different
+unitary cost per CPU, memory, and storage. This increases the
+complexity of deciding the location where a given function or
+application should be best deployed or executed.
+This decision should be jointly
+influenced on the one hand by the available resources in a given computing
+environment, and on the other hand by the capabilities of the network path connecting
+the traffic source with the destination.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">Network and compute aware function placement and selection has become of utmost importance in the last decade. The availability of such information is taken for granted by the numerous service providers and bodies that are specifying them.
+However, deployments may reach out to data centers running different implementations with different understandings and representations of compute capabilities and smooth operation is a challenge. While standardization efforts on network capabilities representation and exposure are well-advanced, similar efforts on compute capabilitites are in their infancy.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">This document proposes an initial approach towards  a common understanding
+and exposure scheme for metrics reflecting compute capabilities.
+It aims at building on existing work in the IETF on compute metrics definitions to build synergies.
+It also aims at reaching out to working or research groups in the IETF that would consume such information and have particular requirements.<a href="#section-1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1198,7 +1241,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-motivations" class="section-name selfRef">Motivations</a>
       </h2>
 <p id="section-3-1">TODO TEST
-ANOTHE CHANGE + COMMENTS<a href="#section-3-1" class="pilcrow">¶</a></p>
+ANOTHE CHANGE + COMMENTS
+CHANGE 2<a href="#section-3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="problem-space-and-needs">
