@@ -1179,7 +1179,15 @@ capabilities.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
             <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
+                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
+                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
             <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
@@ -1369,7 +1377,7 @@ provider) to query the available compute and communication resources from the sy
 <p id="section-5-2">P1. Leverage metrics across working groups to avoid reinventing the wheel. For instance:<a href="#section-5-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-5-3.1">
-          <p id="section-5-3.1.1">RFC-to-be 9439 <span>[<a href="#I-D.ietf-alto-performance-metrics" class="cite xref">I-D.ietf-alto-performance-metrics</a>]</span> leverages IPPM metrics from RFC 7679.<a href="#section-5-3.1.1" class="pilcrow">¶</a></p>
+          <p id="section-5-3.1.1">RFC 9439 <span>[<a href="#I-D.ietf-alto-performance-metrics" class="cite xref">I-D.ietf-alto-performance-metrics</a>]</span> leverages IPPM metrics from RFC 7679.<a href="#section-5-3.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-5-3.2">
           <p id="section-5-3.2.1">Section 5.2 of <span>[<a href="#I-D.du-cats-computing-modeling-description" class="cite xref">I-D.du-cats-computing-modeling-description</a>]</span> considers delay as a good metric, since it is easy to use in both compute and communication domains. RFC-to-be 9439 also defines delay as part of the performance metrics.<a href="#section-5-3.2.1" class="pilcrow">¶</a></p>
@@ -1394,7 +1402,18 @@ service placement or selection.<a href="#section-5-4" class="pilcrow">¶</a></p>
       <h2 id="name-related-work">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-related-work" class="section-name selfRef">Related Work</a>
       </h2>
-<p id="section-6-1">TODO<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-1">Some existing work has explored compute-related metrics. They can be categorized as follows:<a href="#section-6-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6-2.1">
+          <p id="section-6-2.1.1">References providing raw compute infrastructure metrics: <span>[<a href="#I-D.contreras-alto-service-edge" class="cite xref">I-D.contreras-alto-service-edge</a>]</span> includes references to cloud management solutions (i.e., OpenStack, Kubernetes, etc) which administer the virtualization infrastructure, providing information about raw compute infrastructure metrics. Furthermore, <span>[<a href="#NFV-TST" class="cite xref">NFV-TST</a>]</span> describes processor, memmory and network interface usage metrics.<a href="#section-6-2.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-6-2.2">
+          <p id="section-6-2.2.1">References providing compute virtualization metrics: <span>[<a href="#RFC7666" class="cite xref">RFC7666</a>]</span> provides several metrics as part of the Management Information Base (MIB) definition for managing virtual machines controlled by a hypervisor. The objects there defined make reference to the resources consumed by a particluar virtual machine serving as host for services or applications. Moreover, <span>[<a href="#NFV-INF" class="cite xref">NFV-INF</a>]</span> provides metrics associated to virtualized network functions.<a href="#section-6-2.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-6-2.3">
+          <p id="section-6-2.3.1">References providing service metrics including compute-related information: <span>[<a href="#I-D.dunbar-cats-edge-service-metrics" class="cite xref">I-D.dunbar-cats-edge-service-metrics</a>]</span> proposes metrics associated to services running in compute infrastructures. Some of these metrics do not depend on the infrastructure behavior itself but from where such compute infrastructure is topologically located.<a href="#section-6-2.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
 </section>
 </div>
 <div id="gap-analysis">
@@ -1402,7 +1421,8 @@ service placement or selection.<a href="#section-5-4" class="pilcrow">¶</a></p>
       <h2 id="name-gap-analysis">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-gap-analysis" class="section-name selfRef">GAP Analysis</a>
       </h2>
-<p id="section-7-1">TODO<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-1">From this related work it is evident that compute-related metrics can serve several purposes, ranging from service instance instantiation to service instance behavior, and then to service instance selection. Some of the metrics could refer to the same object (e.g., CPU) but with a particular usage and scope.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-2">In contrast, the network metrics are more uniform and straightforward. It is then necessary to consistently define a set of metrics that could assist to the operation in the different concerns identified so far, so that networks and systems could have a common understanding of the perceived compute performance. When combined with network metrics, the combined network plus compute performance behavior will assist informed decisions particular to each of the operational concerns related to the different parts of a service life cycle.<a href="#section-7-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations">
@@ -1421,35 +1441,69 @@ service placement or selection.<a href="#section-5-4" class="pilcrow">¶</a></p>
 <p id="section-9-1">This document has no IANA actions.<a href="#section-9-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="sec-normative-references">
 <section id="section-10">
-      <h2 id="name-normative-references">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+      <h2 id="name-references">
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
+<div id="sec-normative-references">
+<section id="section-10.1">
+        <h3 id="name-normative-references">
+<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
 <dl class="references">
 <dt id="I-D.du-cats-computing-modeling-description">[I-D.du-cats-computing-modeling-description]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Du, Z.</span>, <span class="refAuthor">Fu, Y.</span>, <span class="refAuthor">Li, C.</span>, <span class="refAuthor">Huang, D.</span>, and <span class="refAuthor">Z. Fu</span>, <span class="refTitle">"Computing Information Description in Computing-Aware Traffic Steering"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-du-cats-computing-modeling-description-02</span>, <time datetime="2023-10-23" class="refDate">23 October 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-du-cats-computing-modeling-description-02">https://datatracker.ietf.org/doc/html/draft-du-cats-computing-modeling-description-02</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-alto-performance-metrics">[I-D.ietf-alto-performance-metrics]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Yang, Y. R.</span>, <span class="refAuthor">Lee, Y.</span>, <span class="refAuthor">Dhody, D.</span>, <span class="refAuthor">Randriamasy, S.</span>, and <span class="refAuthor">L. M. Contreras</span>, <span class="refTitle">"Application-Layer Traffic Optimization (ALTO) Performance Cost Metrics"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-alto-performance-metrics-28</span>, <time datetime="2022-03-21" class="refDate">21 March 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-alto-performance-metrics-28">https://datatracker.ietf.org/doc/html/draft-ietf-alto-performance-metrics-28</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7285">[RFC7285]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Alimi, R., Ed.</span>, <span class="refAuthor">Penno, R., Ed.</span>, <span class="refAuthor">Yang, Y., Ed.</span>, <span class="refAuthor">Kiesel, S.</span>, <span class="refAuthor">Previdi, S.</span>, <span class="refAuthor">Roome, W.</span>, <span class="refAuthor">Shalunov, S.</span>, and <span class="refAuthor">R. Woundy</span>, <span class="refTitle">"Application-Layer Traffic Optimization (ALTO) Protocol"</span>, <span class="seriesInfo">RFC 7285</span>, <span class="seriesInfo">DOI 10.17487/RFC7285</span>, <time datetime="2014-09" class="refDate">September 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7285">https://www.rfc-editor.org/rfc/rfc7285</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-    <dd>
+      <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
 </div>
+<div id="sec-informative-references">
+<section id="section-10.2">
+        <h3 id="name-informative-references">
+<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="I-D.contreras-alto-service-edge">[I-D.contreras-alto-service-edge]</dt>
+        <dd>
+<span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Randriamasy, S.</span>, <span class="refAuthor">Ros-Giralt, J.</span>, <span class="refAuthor">Perez, D. A. L.</span>, and <span class="refAuthor">C. E. Rothenberg</span>, <span class="refTitle">"Use of ALTO for Determining Service Edge"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-contreras-alto-service-edge-10</span>, <time datetime="2023-10-13" class="refDate">13 October 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-contreras-alto-service-edge-10">https://datatracker.ietf.org/doc/html/draft-contreras-alto-service-edge-10</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.dunbar-cats-edge-service-metrics">[I-D.dunbar-cats-edge-service-metrics]</dt>
+        <dd>
+<span class="refAuthor">Dunbar, L.</span>, <span class="refAuthor">Majumdar, K.</span>, <span class="refAuthor">Mishra, G. S.</span>, <span class="refAuthor">Wang, H.</span>, and <span class="refAuthor">H. Song</span>, <span class="refTitle">"5G Edge Services Use Cases"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-dunbar-cats-edge-service-metrics-01</span>, <time datetime="2023-07-06" class="refDate">6 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-dunbar-cats-edge-service-metrics-01">https://datatracker.ietf.org/doc/html/draft-dunbar-cats-edge-service-metrics-01</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="NFV-INF">[NFV-INF]</dt>
+        <dd>
+<span class="refTitle">"ETSI GS NFV-INF 010, v1.1.1, Service Quality Metrics"</span>, <time datetime="2014-12-01" class="refDate">1 December 2014</time>, <span>&lt;<a href="https://www.etsi.org/deliver/etsi_gs/NFV-INF/001_099/010/01.01.01_60/gs_NFV-INF010v010101p.pdf">https://www.etsi.org/deliver/etsi_gs/NFV-INF/001_099/010/01.01.01_60/gs_NFV-INF010v010101p.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="NFV-TST">[NFV-TST]</dt>
+        <dd>
+<span class="refTitle">"ETSI GS NFV-TST 008 V3.3.1, NFVI Compute and Network Metrics Specification"</span>, <time datetime="2020-06-01" class="refDate">1 June 2020</time>, <span>&lt;<a href="https://www.etsi.org/deliver/etsi_gs/NFV-TST/001_099/008/03.03.01_60/gs_NFV-TST008v030301p.pdf">https://www.etsi.org/deliver/etsi_gs/NFV-TST/001_099/008/03.03.01_60/gs_NFV-TST008v030301p.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7666">[RFC7666]</dt>
+      <dd>
+<span class="refAuthor">Asai, H.</span>, <span class="refAuthor">MacFaden, M.</span>, <span class="refAuthor">Schoenwaelder, J.</span>, <span class="refAuthor">Shima, K.</span>, and <span class="refAuthor">T. Tsou</span>, <span class="refTitle">"Management Information Base for Virtual Machines Controlled by a Hypervisor"</span>, <span class="seriesInfo">RFC 7666</span>, <span class="seriesInfo">DOI 10.17487/RFC7666</span>, <time datetime="2015-10" class="refDate">October 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7666">https://www.rfc-editor.org/rfc/rfc7666</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+</section>
 <div id="acknowledgments">
 <section id="appendix-A">
       <h2 id="name-acknowledgments">
