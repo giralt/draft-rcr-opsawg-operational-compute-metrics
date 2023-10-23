@@ -92,7 +92,7 @@ Table of Contents
 
 3.  Motivations
 
-   TODO
+   TODO TEST
 
 4.  Problem Space and Needs
 
@@ -240,9 +240,9 @@ Table of Contents
               Du, Z., Fu, Y., Li, C., Huang, D., and Z. Fu, "Computing
               Information Description in Computing-Aware Traffic
               Steering", Work in Progress, Internet-Draft, draft-du-
-              cats-computing-modeling-description-01, 4 July 2023,
+              cats-computing-modeling-description-02, 23 October 2023,
               <https://datatracker.ietf.org/doc/html/draft-du-cats-
-              computing-modeling-description-01>.
+              computing-modeling-description-02>.
 
    [I-D.ietf-alto-performance-metrics]
               Wu, Q., Yang, Y. R., Lee, Y., Dhody, D., Randriamasy, S.,
