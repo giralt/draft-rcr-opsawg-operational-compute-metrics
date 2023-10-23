@@ -5,10 +5,10 @@
 Network Working Group                                     S. Randriamasy
 Internet-Draft                                           Nokia Bell Labs
 Intended status: Informational                           L. M. Contreras
-Expires: 24 April 2024                                        Telefonica
+Expires: 25 April 2024                                        Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
-                                                         22 October 2023
+                                                         23 October 2023
 
 
  Joint Exposure of Network and Compute Information for Infrastructure-
@@ -47,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 April 2024.
+   This Internet-Draft will expire on 25 April 2024.
 
 Copyright Notice
 
@@ -190,8 +190,33 @@ Table of Contents
 
 5.  Guiding Principles
 
-   The driving principles for designing an API to jointly extract
+   The driving principles for designing an interface to jointly extract
    network and compute information are as follows:
+
+   P1.  Leverage metrics across working groups to avoid reinventing the
+   wheel.  For instance:
+
+   *  RFC-to-be 9439 [I-D.ietf-alto-performance-metrics] leverages IPPM
+      metrics from RFC 7679.
+
+   *  Section 5.2 of [I-D.du-cats-computing-modeling-description]
+      considers delay as a good metric, since it is easy to use in both
+      compute and communication domains.  RFC-to-be 9439 also defines
+      delay as part of the performance metrics.
+
+   *  Section 6 of [I-D.du-cats-computing-modeling-description] proposes
+      to represent the network structure as graphs, which is similar to
+      the ALTO map services in [RFC7285].
+
+   P2.  Aim for simplicity, while ensuring the combined efforts don’t
+   leave technical gaps in supporting the full life cycle of service
+   deployment and selection.  For instance, the CATS working group is
+   covering path selection from a network standpoint, while ALTO (e.g.,
+   [RFC7285]) covers exposing of network information to the service
+   provider and the client application.  However, there is currently no
+   effort being pursued to expose compute information to the service
+   provider and the client application for service placement or
+   selection.
 
 6.  Related Work
 
@@ -211,10 +236,33 @@ Table of Contents
 
 10.  Normative References
 
+   [I-D.du-cats-computing-modeling-description]
+              Du, Z., Fu, Y., Li, C., Huang, D., and Z. Fu, "Computing
+              Information Description in Computing-Aware Traffic
+              Steering", Work in Progress, Internet-Draft, draft-du-
+              cats-computing-modeling-description-01, 4 July 2023,
+              <https://datatracker.ietf.org/doc/html/draft-du-cats-
+              computing-modeling-description-01>.
+
+   [I-D.ietf-alto-performance-metrics]
+              Wu, Q., Yang, Y. R., Lee, Y., Dhody, D., Randriamasy, S.,
+              and L. M. Contreras, "Application-Layer Traffic
+              Optimization (ALTO) Performance Cost Metrics", Work in
+              Progress, Internet-Draft, draft-ietf-alto-performance-
+              metrics-28, 21 March 2022,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-alto-
+              performance-metrics-28>.
+
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC7285]  Alimi, R., Ed., Penno, R., Ed., Yang, Y., Ed., Kiesel, S.,
+              Previdi, S., Roome, W., Shalunov, S., and R. Woundy,
+              "Application-Layer Traffic Optimization (ALTO) Protocol",
+              RFC 7285, DOI 10.17487/RFC7285, September 2014,
+              <https://www.rfc-editor.org/rfc/rfc7285>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
