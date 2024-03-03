@@ -5,10 +5,12 @@
 Network Working Group                                     S. Randriamasy
 Internet-Draft                                           Nokia Bell Labs
 Intended status: Informational                           L. M. Contreras
-Expires: 25 April 2024                                        Telefonica
+Expires: 4 September 2024                                     Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
-                                                         23 October 2023
+                                                               R. Schott
+                                                        Deutsche Telekom
+                                                            3 March 2024
 
 
  Joint Exposure of Network and Compute Information for Infrastructure-
@@ -18,15 +20,16 @@ Expires: 25 April 2024                                        Telefonica
 Abstract
 
    Service providers are starting to deploy computing capabilities
-   across the network for hosting applications such as AR/VR, vehicle
-   networks, IoT, and AI training, among others.  In these distributed
-   computing environments, information about computing and communication
+   across the network for hosting applications such as distributed AI
+   workloads, AR/VR, vehicle networks, and IoT, among others.  In this
+   network-compute environment, knowing information about the
+   availability and state of the underlying communication and compute
    resources is necessary to determine both the proper deployment
-   location of each application and the best server location on which to
-   run it.  This information is used by numerous different
-   implementations with different interpretations.  This document
-   proposes an initial approach towards a common understanding and
-   exposure scheme for metrics reflecting compute capabilities.
+   location of the applications and the most suitable servers on which
+   to run them.  Further, this information is used by numerous use cases
+   with different interpretations.  This document proposes an initial
+   approach towards a common understanding and exposure scheme for
+   metrics reflecting compute and communication capabilities.
 
 About This Document
 
@@ -58,11 +61,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 April 2024.
+   This Internet-Draft will expire on 4 September 2024.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -79,14 +82,22 @@ Table of Contents
    1.  Introduction
    2.  Conventions and Definitions
    3.  Problem Space and Needs
-   4.  Guiding Principles
-   5.  Related Work
-   6.  GAP Analysis
-   7.  Security Considerations
-   8.  IANA Considerations
-   9.  References
-     9.1.  Normative References
-     9.2.  Informative References
+   4.  Use Cases
+     4.1.  Open Abstraction for Edge Computing
+     4.2.  Optimized placement of microservice components
+     4.3.  Distributed AI Workloads
+   5.  Production and Consumption Scenarios of Compute-related
+           Information
+     5.1.  Producers of compute-related information
+     5.2.  Consumers of compute-related information
+   6.  Guiding Principles
+   7.  Related Work
+   8.  GAP Analysis
+   9.  Security Considerations
+   10. IANA Considerations
+   11. References
+     11.1.  Normative References
+     11.2.  Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -232,7 +243,211 @@ Table of Contents
 
               Table 1: Problem space, needs, and stakeholders.
 
-4.  Guiding Principles
+4.  Use Cases
+
+4.1.  Open Abstraction for Edge Computing
+
+   Modern applications such as AR/VR, V2X, or IoT, require bringing
+   compute closer to the edge in order to meet strict bandwidth,
+   latency, and jitter requirements.  While this deployment process
+   resembles the path taken by the main cloud providers (notably, AWS,
+   Facebook, Google and Microsoft) to deploy their large-scale
+   datacenters, the edge presents a key difference: datacenter clouds
+   (both in terms of their infrastructure and the applications run by
+   them) are owned and managed by a single organization, whereas edge
+   clouds involve a complex ecosystem of operators, vendors, and
+   application providers, all striving to provide a quality end-to-end
+   solution to the user.  This implies that, while the traditional cloud
+   has been implemented for the most part by using vertically optimized
+   and closed architectures, the edge will necessarily need to rely on a
+   complete ecosystem of carefully designed open standards to enable
+   horizontal interoperability across all the involved parties.  This
+   document envisions ALTO playing a role as part of the ecosystem of
+   open standards that are necessary to deploy and operate the edge
+   cloud.
+
+   As an example, consider a user of an XR application who arrives at
+   his/her home by car.  The application runs by leveraging compute
+   capabilities from both the car and the public 5G edge cloud.  As the
+   user parks the car, 5G coverage may diminish (due to building
+   interference) making the home local Wi-Fi connectivity a better
+   choice.  Further, instead of relying on computational resources from
+   the car and the 5G edge cloud, latency can be reduced by leveraging
+   computing devices (PCs, laptops, tablets) available from the home
+   edge cloud.  The application's decision to switch from one domain to
+   another, however, demands knowledge about the compute and
+   communication resources available both in the 5G and the Wi-Fi
+   domains, therefore requiring interoperability across multiple
+   industry standards (for instance, IETF and 3GPP on the public side,
+   and IETF and LF Edge [LF-EDGE] on the private home side).  ALTO can
+   be positioned to act as an abstraction layer supporting the exposure
+   of communication and compute information independently of the type of
+   domain the application is currently residing in.
+
+   Future versions of this document will elaborate further on this use
+   case.
+
+4.2.  Optimized placement of microservice components
+
+   Current applications are transitioning from a monolithic service
+   architecture towards the composition of microservice components,
+   following cloud-native trends.  The set of microservices can have
+   associated SLOs which impose constraints not only in terms of
+   required compute resources (CPU, storage, ...) dependent on the
+   compute facilities available, but also in terms of performance
+   indicators such as latency, bandwidth, etc, which impose restrictions
+   in the networking capabilities connecting the computing facilities.
+   Even more complex constrains, such as affinity among certain
+   microservices components could require complex calculations for
+   selecting the most appropriate compute nodes taken into consideration
+   both network and compute information.
+
+   Thus, service/application orchestrators can benefit from the
+   information exposed by ALTO at the time of deciding the placement of
+   the microservices in the network.
+
+4.3.  Distributed AI Workloads
+
+   Generative AI is a technological feat that opens up many applications
+   such as holding conversations, generating art, developing a research
+   paper, or writing software, among many others.  Yet this innovation
+   comes with a high cost in terms of processing and power consumption.
+   While data centers are already running at capacity, it is projected
+   that transitioning current search engine queries to leverage
+   generative AI will increase costs by 10 times compared to traditional
+   search methods [DC-AI-COST].  As (1) computing nodes (CPUs and GPUs)
+   are deployed to build the edge cloud through technologies like 5G and
+   (2) with billions of mobile user devices globally providing a large
+   untapped computational platform, shifting part of the processing from
+   the cloud to the edge becomes a viable and necessary step towards
+   enabling the AI-transition.  There are at least four drivers
+   supporting this trend:
+
+   *  Computational and energy savings: Due to savings from not needing
+      large-scale cooling systems and the high performance-per-watt
+      efficiency of the edge devices, some workloads can run at the edge
+      at a lower computational and energy cost [EDGE-ENERGY], especially
+      when considering not only processing but also data transport.
+
+   *  Latency: For applications such as driverless vehicles which
+      require real-time inference at very low latency, running at the
+      edge is necessary.
+
+   *  Reliability and performance: Peaks in cloud demand for generative
+      AI queries can create large queues and latency, and in some cases
+      even lead to denial of service.  In some cases, limited or no
+      connectivity requires running the workloads at the edge.
+
+   *  Privacy, security, and personalization: A "private mode" allows
+      users to strictly utilize on-device (or near-the-device) AI to
+      enter sensitive prompts to chatbots, such as health questions or
+      confidential ideas.
+
+   These drivers lead to a distributed computational model that is
+   hybrid: Some AI workloads will fully run in the cloud, some will
+   fully run in the edge, and some will run both in the edge and in the
+   cloud.  Being able to efficiently run these workloads in this hybrid,
+   distributed, cloud-edge environment is necessary given the
+   aforementioned massive energy and computational costs.  To make
+   optimized service and workload placement decisions, information about
+   both the compute and communication resources available in the network
+   is necessary too.
+
+   Consider as an example a large language model (LLM) used to generate
+   text and hold intelligent conversations.  LLMs produce a single token
+   per inference, where a token is almost equivalent to a word.
+   Pipelining and parallelization techniques are used to optimize
+   inference, but this means that a model like GPT-3 could potentially
+   go through all 175 billion parameters that are part of it to generate
+   a single word.  To efficiently run these computational-intensive
+   workloads, it is necessary to know the availability of compute
+   resources in the distributed system.  Suppose that a user is driving
+   a car while conversing with an AI model.  The model can run inference
+   on a variety of compute nodes, ordered from lower to higher compute
+   power as follows: (1) the user's phone, (2) the computer in the car,
+   (3) the 5G edge cloud, and (4) the datacenter cloud.
+   Correspondingly, the system can deploy four different models with
+   different levels of precision and compute requirements.  The simplest
+   model with the least parameters can run in the phone, requiring less
+   compute power but yielding lower accuracy.  Three other models
+   ordered in increasing value of accuracy and computational complexity
+   can run in the car, the edge, and the cloud.  The application can
+   identify the right trade-off between accuracy and computational cost,
+   combined with metrics of communication bandwidth and latency, to make
+   the right decision on which of the four models to use for every
+   inference request.  Note that this is similar to the resolution/
+   bandwidth trade-off commonly found in the image encoding problem,
+   where an image can be encoded and transmitted at different levels of
+   resolution depending on the available bandwidth in the communication
+   channel.  In the case of AI inference, however, not only bandwidth is
+   a scarce resource, but also compute.  ALTO extensions to support the
+   exposure of compute resources would allow applications to make
+   optimized decisions on selecting the right computational resource,
+   supporting the efficient execution of hybrid AI workloads.
+
+5.  Production and Consumption Scenarios of Compute-related Information
+
+   It is important to understand the scenarios of production and
+   consumption of compute-related information in combination with
+   information related to communication.  Leveraging such combination
+   enables the possibility of resource and workload placement
+   optimization, leading to both operational cost reductions to the
+   operator and service provider as well as an improvement on the
+   service level experienced by the users.
+
+5.1.  Producers of compute-related information
+
+   The information relative to compute (i.e., processing capabilities,
+   memory, and storage capacity) can be structured in two ways.  On one
+   hand, the information corresponding to the raw compute resources; on
+   the other hand, the information of resources allocated or in use by a
+   specific application or service function.
+
+   The former is typically provided by the management systems enabling
+   the virtualization of the physical resources for a later assignment
+   to processes running on top.  Cloud Managers or Virtual
+   Infrastructure Managers are the entities which manage those
+   resources.  These management systems offer APIs from where to
+   retrieve the available resources in a compute facility.  Thus, it can
+   be expected that these APIs can be used for the consumption of such
+   information.  Once the raw resources are retrieved from the various
+   compute facilities, it could be possible to generate topological
+   network views of them, as being proposed in
+   [I-D.llc-teas-dc-aware-topo-model].
+
+   Regarding the resources allocated or in use by a specific application
+   or service function, two situations apply.  The total allocation and
+   the allocation per service or application.  In the first case, the
+   information can be supplied by the virtualization management systems
+   described before.  For the specific allocation per service, it can be
+   expected that the specific management systems of the service or
+   application is capable to provide the resources being used at run
+   time typically as part of the allocated ones.  In this last scenario,
+   it is also reasonable to expect the availability of APIs offering
+   such information, even though it can be particular to a service or
+   application.
+
+5.2.  Consumers of compute-related information
+
+   The consumption of compute-related information is relative to the
+   different phases of the service lifecycle.  This means that such
+   information can be consumed in different points of time and for
+   different purposes.
+
+   The expected consumers can be both external or internal to the
+   network.  As external consumers it is possible to consider external
+   application management systems requiring resource availability
+   information for service function placement decision, workload
+   migration in the case of consuming raw resources, or requiring
+   information on the usage of resources for service assurance or
+   service scaling, among others.
+
+   As internal consumers it is possible to consider network management
+   entities requiring view on the level of resource usage for traffic
+   steering (as the Path Selector in [I-D.ldbc-cats-framework]), load
+   balance, or analytics, among others.
+
+6.  Guiding Principles
 
    The driving principles for designing an interface to jointly extract
    network and compute information are as follows:
@@ -262,7 +477,7 @@ Table of Contents
    provider and the client application for service placement or
    selection.
 
-5.  Related Work
+7.  Related Work
 
    Some existing work has explored compute-related metrics.  They can be
    categorized as follows:
@@ -290,7 +505,7 @@ Table of Contents
       itself but from where such compute infrastructure is topologically
       located.
 
-6.  GAP Analysis
+8.  GAP Analysis
 
    From this related work it is evident that compute-related metrics can
    serve several purposes, ranging from service instance instantiation
@@ -308,17 +523,17 @@ Table of Contents
    each of the operational concerns related to the different parts of a
    service life cycle.
 
-7.  Security Considerations
+9.  Security Considerations
 
    TODO Security
 
-8.  IANA Considerations
+10.  IANA Considerations
 
    This document has no IANA actions.
 
-9.  References
+11.  References
 
-9.1.  Normative References
+11.1.  Normative References
 
    [I-D.du-cats-computing-modeling-description]
               Du, Z., Fu, Y., Li, C., Huang, D., and Z. Fu, "Computing
@@ -337,6 +552,14 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-alto-
               performance-metrics-28>.
 
+   [I-D.ldbc-cats-framework]
+              Li, C., Du, Z., Boucadair, M., Contreras, L. M., and J.
+              Drake, "A Framework for Computing-Aware Traffic Steering
+              (CATS)", Work in Progress, Internet-Draft, draft-ldbc-
+              cats-framework-06, 8 February 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ldbc-cats-
+              framework-06>.
+
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
@@ -352,7 +575,18 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-9.2.  Informative References
+11.2.  Informative References
+
+   [DC-AI-COST]
+              "Generative AI Breaks The Data Center - Data Center
+              Infrastructure And Operating Costs Projected To Increase
+              To Over $76 Billion By 2028", Forbes, Tirias Research
+              Report , 2023.
+
+   [EDGE-ENERGY]
+              "Estimating energy consumption of cloud, fog, and edge
+              computing infrastructures", IEEE Transactions on
+              Sustainable Computing , 2019.
 
    [I-D.contreras-alto-service-edge]
               Contreras, L. M., Randriamasy, S., Ros-Giralt, J., Perez,
@@ -368,6 +602,16 @@ Table of Contents
               Internet-Draft, draft-dunbar-cats-edge-service-metrics-01,
               6 July 2023, <https://datatracker.ietf.org/doc/html/draft-
               dunbar-cats-edge-service-metrics-01>.
+
+   [I-D.llc-teas-dc-aware-topo-model]
+              Lee, Y., Liu, X., and L. M. Contreras, "DC aware TE
+              topology model", Work in Progress, Internet-Draft, draft-
+              llc-teas-dc-aware-topo-model-03, 10 July 2023,
+              <https://datatracker.ietf.org/doc/html/draft-llc-teas-dc-
+              aware-topo-model-03>.
+
+   [LF-EDGE]  "Linux Foundation Edge", https://www.lfedge.org/ , March
+              2023.
 
    [NFV-INF]  "ETSI GS NFV-INF 010, v1.1.1, Service Quality Metrics", 1
               December 2014, <https://www.etsi.org/deliver/etsi_gs/NFV-
@@ -403,3 +647,8 @@ Authors' Addresses
    Jordi Ros-Giralt
    Qualcomm Europe, Inc.
    Email: jros@qti.qualcomm.com
+
+
+   Roland Schott
+   Deutsche Telekom
+   Email: Roland.Schott@telekom.de

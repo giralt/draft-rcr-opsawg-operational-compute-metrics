@@ -8,38 +8,39 @@
 <meta content="S. Randriamasy" name="author">
 <meta content="L. M. Contreras" name="author">
 <meta content="Jordi Ros-Giralt" name="author">
+<meta content="Roland Schott" name="author">
 <meta content="
        Service providers are starting to deploy computing capabilities
-across the network for hosting applications such as AR/VR, vehicle
-networks, IoT, and AI training, among others. In these distributed
-computing environments, information about computing and communication
-resources is necessary to determine both the proper deployment location of
-each application and the best server location on which to run it.
-This information is used by numerous different implementations with different
+across the network for hosting applications such as distributed AI workloads,
+AR/VR, vehicle networks, and IoT, among others. In this
+network-compute environment, knowing information about
+the availability and state of the underlying communication and compute resources is
+necessary to determine both the proper deployment location of
+the applications and the most suitable servers on which to run them.
+Further, this information is used by numerous use cases with different
 interpretations. This document proposes an initial approach towards a
-common understanding and exposure scheme for metrics reflecting compute
-capabilities. 
+common understanding and exposure scheme for metrics reflecting compute and communication capabilities. 
     " name="description">
-<meta content="xml2rfc 3.18.2" name="generator">
+<meta content="xml2rfc 3.20.0" name="generator">
 <meta content="next generation" name="keyword">
 <meta content="unicorn" name="keyword">
 <meta content="sparkling distributed ledger" name="keyword">
 <meta content="draft-rcr-opsawg-operational-compute-metrics-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.18.2
-    Python 3.11.6
-    ConfigArgParse 1.5.3
+  xml2rfc 3.20.0
+    Python 3.11.8
+    ConfigArgParse 1.7
     google-i18n-address 3.1.0
     intervaltree 3.1.0
     Jinja2 3.1.2
     lxml 4.9.3
-    platformdirs 3.11.0
+    platformdirs 4.2.0
     pycountry 22.3.5
-    PyYAML 6.0
+    PyYAML 6.0.1
     requests 2.31.0
-    setuptools 67.7.2
+    setuptools 68.2.2
     six 1.16.0
-    wcwidth 0.2.8
+    wcwidth 0.2.13
 -->
 <link href="draft-rcr-opsawg-operational-compute-metrics.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1038,11 +1039,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">TODO - Abbreviation</td>
-<td class="right">October 2023</td>
+<td class="right">March 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Randriamasy, et al.</td>
-<td class="center">Expires 25 April 2024</td>
+<td class="center">Expires 4 September 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1055,12 +1056,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-rcr-opsawg-operational-compute-metrics-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-10-23" class="published">23 October 2023</time>
+<time datetime="2024-03-03" class="published">3 March 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-04-25">25 April 2024</time></dd>
+<dd class="expires"><time datetime="2024-09-04">4 September 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1075,6 +1076,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <div class="author-name">J. Ros-Giralt</div>
 <div class="org">Qualcomm Europe, Inc.</div>
 </div>
+<div class="author">
+      <div class="author-name">R. Schott</div>
+<div class="org">Deutsche Telekom</div>
+</div>
 </dd>
 </dl>
 </div>
@@ -1082,15 +1087,15 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">Service providers are starting to deploy computing capabilities
-across the network for hosting applications such as AR/VR, vehicle
-networks, IoT, and AI training, among others. In these distributed
-computing environments, information about computing and communication
-resources is necessary to determine both the proper deployment location of
-each application and the best server location on which to run it.
-This information is used by numerous different implementations with different
+across the network for hosting applications such as distributed AI workloads,
+AR/VR, vehicle networks, and IoT, among others. In this
+network-compute environment, knowing information about
+the availability and state of the underlying communication and compute resources is
+necessary to determine both the proper deployment location of
+the applications and the most suitable servers on which to run them.
+Further, this information is used by numerous use cases with different
 interpretations. This document proposes an initial approach towards a
-common understanding and exposure scheme for metrics reflecting compute
-capabilities.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+common understanding and exposure scheme for metrics reflecting compute and communication capabilities.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1122,7 +1127,7 @@ capabilities.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 25 April 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 4 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1131,7 +1136,7 @@ capabilities.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2023 IETF Trust and the persons identified as the
+            Copyright (c) 2024 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1161,36 +1166,61 @@ capabilities.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
             <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-problem-space-and-needs" class="internal xref">Problem Space and Needs</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-guiding-principles" class="internal xref">Guiding Principles</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-related-work" class="internal xref">Related Work</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-gap-analysis" class="internal xref">GAP Analysis</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-references" class="internal xref">References</a></p>
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-use-cases" class="internal xref">Use Cases</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
-                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-open-abstraction-for-edge-c" class="internal xref">Open Abstraction for Edge Computing</a></p>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
-                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-optimized-placement-of-micr" class="internal xref">Optimized placement of microservice components</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-distributed-ai-workloads" class="internal xref">Distributed AI Workloads</a></p>
 </li>
             </ul>
 </li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-production-and-consumption-" class="internal xref">Production and Consumption Scenarios of Compute-related Information</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-producers-of-compute-relate" class="internal xref">Producers of compute-related information</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-consumers-of-compute-relate" class="internal xref">Consumers of compute-related information</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-guiding-principles" class="internal xref">Guiding Principles</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-related-work" class="internal xref">Related Work</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-gap-analysis" class="internal xref">GAP Analysis</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.1">
+                <p id="section-toc.1-1.11.2.1.1"><a href="#section-11.1" class="auto internal xref">11.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.2">
+                <p id="section-toc.1-1.11.2.2.1"><a href="#section-11.2" class="auto internal xref">11.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1355,25 +1385,201 @@ provider) to query the available compute and communication resources from the sy
 </div>
 </section>
 </div>
-<div id="guiding-principles">
+<div id="use-cases">
 <section id="section-4">
-      <h2 id="name-guiding-principles">
-<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-guiding-principles" class="section-name selfRef">Guiding Principles</a>
+      <h2 id="name-use-cases">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-use-cases" class="section-name selfRef">Use Cases</a>
       </h2>
-<p id="section-4-1">The driving principles for designing an interface to jointly extract network and compute information are as follows:<a href="#section-4-1" class="pilcrow">¶</a></p>
-<p id="section-4-2">P1. Leverage metrics across working groups to avoid reinventing the wheel. For instance:<a href="#section-4-2" class="pilcrow">¶</a></p>
+<div id="open-abstraction-for-edge-computing">
+<section id="section-4.1">
+        <h3 id="name-open-abstraction-for-edge-c">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-open-abstraction-for-edge-c" class="section-name selfRef">Open Abstraction for Edge Computing</a>
+        </h3>
+<p id="section-4.1-1">Modern applications such as AR/VR,
+V2X, or IoT, require bringing compute
+closer to the edge in order to meet
+strict bandwidth, latency, and jitter requirements.  While this
+deployment process resembles the path taken
+by the main cloud providers
+(notably, AWS, Facebook, Google and Microsoft) to deploy
+their large-scale datacenters, the edge presents a
+key difference: datacenter clouds (both in terms of their infrastructure
+and the applications run by them) are owned and managed by a
+single organization,
+whereas edge clouds involve a complex ecosystem of operators,
+vendors, and application providers, all striving to provide
+a quality end-to-end solution to the user. This implies that,
+while the traditional cloud has been implemented for the most part
+by using vertically optimized and closed architectures, the edge will
+necessarily need to rely on a complete ecosystem of carefully
+designed open standards to enable horizontal interoperability
+across all the involved parties.
+This document envisions ALTO playing a role as part of the
+ecosystem of open standards that are necessary to deploy and
+operate the edge cloud.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1-2">As an example, consider a user of an XR
+application who arrives at his/her home by car. The application
+runs by leveraging compute capabilities from both the
+car and the public 5G edge cloud. As the user parks the
+car, 5G coverage may diminish (due to building interference)
+making the home local Wi-Fi connectivity a better choice.
+Further, instead of relying on computational resources from
+the car and the 5G edge cloud, latency can be reduced by leveraging
+computing devices (PCs, laptops, tablets) available from the home
+edge cloud.
+The application's decision to switch from one
+domain to another, however,
+demands knowledge about the compute
+and communication resources available both in the 5G and the Wi-Fi
+domains, therefore requiring interoperability across multiple
+industry standards (for instance, IETF and 3GPP on the public side,
+and IETF and LF Edge <span>[<a href="#LF-EDGE" class="cite xref">LF-EDGE</a>]</span> on the private home side). ALTO
+can be positioned to act as an abstraction layer supporting
+the exposure of communication and compute information independently
+of the type of domain the application is currently residing in.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
+<p id="section-4.1-3">Future versions of this document will elaborate further on this
+use case.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="optimized-placement-of-microservice-components">
+<section id="section-4.2">
+        <h3 id="name-optimized-placement-of-micr">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-optimized-placement-of-micr" class="section-name selfRef">Optimized placement of microservice components</a>
+        </h3>
+<p id="section-4.2-1">Current applications are transitioning from a monolithic service architecture
+towards the composition of microservice components, following cloud-native
+trends. The set of microservices can have associated SLOs which impose
+constraints not only in terms of required compute resources (CPU, storage, ...)
+dependent on the compute facilities available, but also in terms of performance
+indicators such as latency, bandwidth, etc, which impose restrictions in the
+networking capabilities connecting the computing facilities. Even more complex
+constrains, such as affinity among certain microservices components could
+require complex calculations for selecting the most appropriate compute nodes
+taken into consideration both network and compute information.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2-2">Thus, service/application orchestrators can benefit from the information exposed
+by ALTO at the time of deciding the placement of the microservices in the network.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="distributed-ai-workloads">
+<section id="section-4.3">
+        <h3 id="name-distributed-ai-workloads">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-distributed-ai-workloads" class="section-name selfRef">Distributed AI Workloads</a>
+        </h3>
+<p id="section-4.3-1">Generative AI is a technological feat that opens up many applications such as holding
+conversations, generating art, developing a research paper, or writing software, among
+many others. Yet this innovation comes with a high cost in terms of processing and power
+consumption. While data centers are already running at capacity, it is projected
+that transitioning current search engine queries to leverage generative AI will
+increase costs by 10 times compared to traditional search methods <span>[<a href="#DC-AI-COST" class="cite xref">DC-AI-COST</a>]</span>. As (1) computing
+nodes (CPUs and GPUs) are deployed to build the edge cloud through
+technologies like 5G and (2) with billions of mobile user devices globally providing a large
+untapped computational platform, shifting part of the processing from the cloud to the
+edge becomes a viable and necessary step towards enabling the AI-transition.
+There are at least four drivers supporting this trend:<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4-3.1">
-          <p id="section-4-3.1.1">RFC 9439 <span>[<a href="#I-D.ietf-alto-performance-metrics" class="cite xref">I-D.ietf-alto-performance-metrics</a>]</span> leverages IPPM metrics from RFC 7679.<a href="#section-4-3.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-4.3-2.1">
+            <p id="section-4.3-2.1.1">Computational and energy savings: Due to savings from not needing
+large-scale cooling systems and the high performance-per-watt
+efficiency of the edge devices, some workloads can run at the edge
+at a lower computational and energy cost <span>[<a href="#EDGE-ENERGY" class="cite xref">EDGE-ENERGY</a>]</span>, especially when
+considering not only processing but also data transport.<a href="#section-4.3-2.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-4-3.2">
-          <p id="section-4-3.2.1">Section 5.2 of <span>[<a href="#I-D.du-cats-computing-modeling-description" class="cite xref">I-D.du-cats-computing-modeling-description</a>]</span> considers delay as a good metric, since it is easy to use in both compute and communication domains. RFC 9439 also defines delay as part of the performance metrics.<a href="#section-4-3.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-4.3-2.2">
+            <p id="section-4.3-2.2.1">Latency: For applications such as driverless vehicles which require real-time
+inference at very low latency, running at the edge is necessary.<a href="#section-4.3-2.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-4-3.3">
-          <p id="section-4-3.3.1">Section 6 of <span>[<a href="#I-D.du-cats-computing-modeling-description" class="cite xref">I-D.du-cats-computing-modeling-description</a>]</span> proposes to represent the network structure as graphs, which is similar to the ALTO map services in <span>[<a href="#RFC7285" class="cite xref">RFC7285</a>]</span>.<a href="#section-4-3.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-4.3-2.3">
+            <p id="section-4.3-2.3.1">Reliability and performance: Peaks in cloud demand for generative AI queries can
+create large queues and latency, and in some cases even lead to denial of service.
+In some cases, limited or no connectivity requires running the workloads at the edge.<a href="#section-4.3-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.3-2.4">
+            <p id="section-4.3-2.4.1">Privacy, security, and personalization: A "private mode" allows users to strictly
+utilize on-device (or near-the-device) AI to enter sensitive prompts to chatbots,
+such as health questions or confidential ideas.<a href="#section-4.3-2.4.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-4.3-3">These drivers lead to a distributed computational model that is hybrid: Some AI workloads
+will fully run in the cloud, some will fully run in the edge, and some will run both in the
+edge and in the cloud. Being able to efficiently run these workloads in this hybrid,
+distributed, cloud-edge environment is necessary given the aforementioned massive energy
+and computational costs. To make optimized service and workload placement decisions, information
+about both the compute and communication resources available in the network is necessary too.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
+<p id="section-4.3-4">Consider as an example a large language model (LLM) used to generate text and hold intelligent
+conversations. LLMs produce a single token per inference, where a token is almost equivalent
+to a word. Pipelining and parallelization techniques are used to optimize inference, but
+this means that a model like GPT-3 could potentially go through all 175 billion parameters
+that are part of it to generate a single word. To efficiently run these computational-intensive
+workloads, it is necessary to know the availability of compute resources in the distributed
+system. Suppose that a user is driving a car while conversing with an AI model. The model
+can run inference on a variety of compute nodes, ordered from lower to higher compute power
+as follows: (1) the user's phone, (2) the computer in the car, (3) the 5G edge cloud,
+and (4) the datacenter cloud. Correspondingly, the system can deploy four different models
+with different levels of precision and compute requirements. The simplest model with the
+least parameters can run in the phone, requiring less compute power but yielding lower
+accuracy. Three other models ordered in increasing value of accuracy and computational
+complexity can run in the car, the edge, and the cloud. The application can identify the
+right trade-off between accuracy and computational cost, combined with metrics of
+communication bandwidth and latency, to make the right decision on which of the four
+models to use for every inference request. Note that this is similar to the
+resolution/bandwidth trade-off commonly found in the image encoding problem, where an
+image can be encoded and transmitted at different levels of resolution depending on the
+available bandwidth in the communication channel. In the case of AI inference, however,
+not only bandwidth is a scarce resource, but also compute. ALTO extensions to support
+the exposure of compute resources would allow applications to make optimized decisions
+on selecting the right computational resource, supporting the efficient execution of hybrid
+AI workloads.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="production-and-consumption-scenarios-of-compute-related-information">
+<section id="section-5">
+      <h2 id="name-production-and-consumption-">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-production-and-consumption-" class="section-name selfRef">Production and Consumption Scenarios of Compute-related Information</a>
+      </h2>
+<p id="section-5-1">It is important to understand the scenarios of production and consumption of compute-related information in combination with information related to communication. Leveraging such combination enables the possibility of resource and workload placement optimization, leading to both operational cost reductions to the operator and service provider as well as an improvement on the service level experienced by the users.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<div id="producers-of-compute-related-information">
+<section id="section-5.1">
+        <h3 id="name-producers-of-compute-relate">
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-producers-of-compute-relate" class="section-name selfRef">Producers of compute-related information</a>
+        </h3>
+<p id="section-5.1-1">The information relative to compute (i.e., processing capabilities, memory, and storage capacity) can be structured in two ways. On one hand, the information corresponding to the raw compute resources; on the other hand, the information of resources allocated or in use by a specific application or service function.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1-2">The former is typically provided by the management systems enabling the virtualization of the physical resources for a later assignment to processes running on top. Cloud Managers or Virtual Infrastructure Managers are the entities which manage those resources. These management systems offer APIs from where to retrieve the available resources in a compute facility. Thus, it can be expected that these APIs can be used for the consumption of such information. Once the raw resources are retrieved from the various compute facilities, it could be possible to generate topological network views of them, as being proposed in <span>[<a href="#I-D.llc-teas-dc-aware-topo-model" class="cite xref">I-D.llc-teas-dc-aware-topo-model</a>]</span>.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1-3">Regarding the resources allocated or in use by a specific application or service function, two situations apply. The total allocation and the allocation per service or application. In the first case, the information can be supplied by the virtualization management systems described before. For the specific allocation per service, it can be expected that the specific management systems of the service or application is capable to provide the resources being used at run time typically as part of the allocated ones. In this last scenario, it is also reasonable to expect the availability of APIs offering such information, even though it can be particular to a service or application.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="consumers-of-compute-related-information">
+<section id="section-5.2">
+        <h3 id="name-consumers-of-compute-relate">
+<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-consumers-of-compute-relate" class="section-name selfRef">Consumers of compute-related information</a>
+        </h3>
+<p id="section-5.2-1">The consumption of compute-related information is relative to the different phases of the service lifecycle. This means that such information can be consumed in different points of time and for different purposes.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-2">The expected consumers can be both external or internal to the network. As external consumers it is possible to consider external application management systems requiring resource availability information for service function placement decision, workload migration in the case of consuming raw resources, or requiring information on the usage of resources for service assurance or service scaling, among others.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2-3">As internal consumers it is possible to consider network management entities requiring view on the level of resource usage for traffic steering (as the Path Selector in <span>[<a href="#I-D.ldbc-cats-framework" class="cite xref">I-D.ldbc-cats-framework</a>]</span>), load balance, or analytics, among others.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="guiding-principles">
+<section id="section-6">
+      <h2 id="name-guiding-principles">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-guiding-principles" class="section-name selfRef">Guiding Principles</a>
+      </h2>
+<p id="section-6-1">The driving principles for designing an interface to jointly extract network and compute information are as follows:<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2">P1. Leverage metrics across working groups to avoid reinventing the wheel. For instance:<a href="#section-6-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6-3.1">
+          <p id="section-6-3.1.1">RFC 9439 <span>[<a href="#I-D.ietf-alto-performance-metrics" class="cite xref">I-D.ietf-alto-performance-metrics</a>]</span> leverages IPPM metrics from RFC 7679.<a href="#section-6-3.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-6-3.2">
+          <p id="section-6-3.2.1">Section 5.2 of <span>[<a href="#I-D.du-cats-computing-modeling-description" class="cite xref">I-D.du-cats-computing-modeling-description</a>]</span> considers delay as a good metric, since it is easy to use in both compute and communication domains. RFC 9439 also defines delay as part of the performance metrics.<a href="#section-6-3.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-6-3.3">
+          <p id="section-6-3.3.1">Section 6 of <span>[<a href="#I-D.du-cats-computing-modeling-description" class="cite xref">I-D.du-cats-computing-modeling-description</a>]</span> proposes to represent the network structure as graphs, which is similar to the ALTO map services in <span>[<a href="#RFC7285" class="cite xref">RFC7285</a>]</span>.<a href="#section-6-3.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-4-4">P2. Aim for simplicity, while ensuring the combined efforts
+<p id="section-6-4">P2. Aim for simplicity, while ensuring the combined efforts
 don’t leave technical gaps in supporting the full life cycle
 of service deployment and selection. For instance, the CATS working
 group is covering path selection from a network standpoint, while
@@ -1381,61 +1587,61 @@ ALTO (e.g., <span>[<a href="#RFC7285" class="cite xref">RFC7285</a>]</span>) cov
 to the service provider and the client application. However,
 there is currently no effort being pursued to expose compute information
 to the service provider and the client application for
-service placement or selection.<a href="#section-4-4" class="pilcrow">¶</a></p>
+service placement or selection.<a href="#section-6-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="related-work">
-<section id="section-5">
+<section id="section-7">
       <h2 id="name-related-work">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-related-work" class="section-name selfRef">Related Work</a>
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-related-work" class="section-name selfRef">Related Work</a>
       </h2>
-<p id="section-5-1">Some existing work has explored compute-related metrics. They can be categorized as follows:<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-7-1">Some existing work has explored compute-related metrics. They can be categorized as follows:<a href="#section-7-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5-2.1">
-          <p id="section-5-2.1.1">References providing raw compute infrastructure metrics: <span>[<a href="#I-D.contreras-alto-service-edge" class="cite xref">I-D.contreras-alto-service-edge</a>]</span> includes references to cloud management solutions (i.e., OpenStack, Kubernetes, etc) which administer the virtualization infrastructure, providing information about raw compute infrastructure metrics. Furthermore, <span>[<a href="#NFV-TST" class="cite xref">NFV-TST</a>]</span> describes processor, memory and network interface usage metrics.<a href="#section-5-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7-2.1">
+          <p id="section-7-2.1.1">References providing raw compute infrastructure metrics: <span>[<a href="#I-D.contreras-alto-service-edge" class="cite xref">I-D.contreras-alto-service-edge</a>]</span> includes references to cloud management solutions (i.e., OpenStack, Kubernetes, etc) which administer the virtualization infrastructure, providing information about raw compute infrastructure metrics. Furthermore, <span>[<a href="#NFV-TST" class="cite xref">NFV-TST</a>]</span> describes processor, memory and network interface usage metrics.<a href="#section-7-2.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-5-2.2">
-          <p id="section-5-2.2.1">References providing compute virtualization metrics: <span>[<a href="#RFC7666" class="cite xref">RFC7666</a>]</span> provides several metrics as part of the Management Information Base (MIB) definition for managing virtual machines controlled by a hypervisor. The objects there defined make reference to the resources consumed by a particluar virtual machine serving as host for services or applications. Moreover, <span>[<a href="#NFV-INF" class="cite xref">NFV-INF</a>]</span> provides metrics associated to virtualized network functions.<a href="#section-5-2.2.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-7-2.2">
+          <p id="section-7-2.2.1">References providing compute virtualization metrics: <span>[<a href="#RFC7666" class="cite xref">RFC7666</a>]</span> provides several metrics as part of the Management Information Base (MIB) definition for managing virtual machines controlled by a hypervisor. The objects there defined make reference to the resources consumed by a particluar virtual machine serving as host for services or applications. Moreover, <span>[<a href="#NFV-INF" class="cite xref">NFV-INF</a>]</span> provides metrics associated to virtualized network functions.<a href="#section-7-2.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-5-2.3">
-          <p id="section-5-2.3.1">References providing service metrics including compute-related information: <span>[<a href="#I-D.dunbar-cats-edge-service-metrics" class="cite xref">I-D.dunbar-cats-edge-service-metrics</a>]</span> proposes metrics associated to services running in compute infrastructures. Some of these metrics do not depend on the infrastructure behavior itself but from where such compute infrastructure is topologically located.<a href="#section-5-2.3.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-7-2.3">
+          <p id="section-7-2.3.1">References providing service metrics including compute-related information: <span>[<a href="#I-D.dunbar-cats-edge-service-metrics" class="cite xref">I-D.dunbar-cats-edge-service-metrics</a>]</span> proposes metrics associated to services running in compute infrastructures. Some of these metrics do not depend on the infrastructure behavior itself but from where such compute infrastructure is topologically located.<a href="#section-7-2.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
 </div>
 <div id="gap-analysis">
-<section id="section-6">
+<section id="section-8">
       <h2 id="name-gap-analysis">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-gap-analysis" class="section-name selfRef">GAP Analysis</a>
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-gap-analysis" class="section-name selfRef">GAP Analysis</a>
       </h2>
-<p id="section-6-1">From this related work it is evident that compute-related metrics can serve several purposes, ranging from service instance instantiation to service instance behavior, and then to service instance selection. Some of the metrics could refer to the same object (e.g., CPU) but with a particular usage and scope.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2">In contrast, the network metrics are more uniform and straightforward. It is then necessary to consistently define a set of metrics that could assist to the operation in the different concerns identified so far, so that networks and systems could have a common understanding of the perceived compute performance. When combined with network metrics, the combined network plus compute performance behavior will assist informed decisions particular to each of the operational concerns related to the different parts of a service life cycle.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-8-1">From this related work it is evident that compute-related metrics can serve several purposes, ranging from service instance instantiation to service instance behavior, and then to service instance selection. Some of the metrics could refer to the same object (e.g., CPU) but with a particular usage and scope.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-2">In contrast, the network metrics are more uniform and straightforward. It is then necessary to consistently define a set of metrics that could assist to the operation in the different concerns identified so far, so that networks and systems could have a common understanding of the perceived compute performance. When combined with network metrics, the combined network plus compute performance behavior will assist informed decisions particular to each of the operational concerns related to the different parts of a service life cycle.<a href="#section-8-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations">
-<section id="section-7">
+<section id="section-9">
       <h2 id="name-security-considerations">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-7-1">TODO Security<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-9-1">TODO Security<a href="#section-9-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-8">
+<section id="section-10">
       <h2 id="name-iana-considerations">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-8-1">This document has no IANA actions.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-10-1">This document has no IANA actions.<a href="#section-10-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<section id="section-9">
+<section id="section-11">
       <h2 id="name-references">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-references" class="section-name selfRef">References</a>
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
 <div id="sec-normative-references">
-<section id="section-9.1">
+<section id="section-11.1">
         <h3 id="name-normative-references">
-<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-11.1" class="section-number selfRef">11.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
 <dt id="I-D.du-cats-computing-modeling-description">[I-D.du-cats-computing-modeling-description]</dt>
@@ -1445,6 +1651,10 @@ service placement or selection.<a href="#section-4-4" class="pilcrow">¶</a></p>
 <dt id="I-D.ietf-alto-performance-metrics">[I-D.ietf-alto-performance-metrics]</dt>
         <dd>
 <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Yang, Y. R.</span>, <span class="refAuthor">Lee, Y.</span>, <span class="refAuthor">Dhody, D.</span>, <span class="refAuthor">Randriamasy, S.</span>, and <span class="refAuthor">L. M. Contreras</span>, <span class="refTitle">"Application-Layer Traffic Optimization (ALTO) Performance Cost Metrics"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-alto-performance-metrics-28</span>, <time datetime="2022-03-21" class="refDate">21 March 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-alto-performance-metrics-28">https://datatracker.ietf.org/doc/html/draft-ietf-alto-performance-metrics-28</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ldbc-cats-framework">[I-D.ldbc-cats-framework]</dt>
+        <dd>
+<span class="refAuthor">Li, C.</span>, <span class="refAuthor">Du, Z.</span>, <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Contreras, L. M.</span>, and <span class="refAuthor">J. Drake</span>, <span class="refTitle">"A Framework for Computing-Aware Traffic Steering (CATS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ldbc-cats-framework-06</span>, <time datetime="2024-02-08" class="refDate">8 February 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ldbc-cats-framework-06">https://datatracker.ietf.org/doc/html/draft-ldbc-cats-framework-06</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
@@ -1462,11 +1672,19 @@ service placement or selection.<a href="#section-4-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-informative-references">
-<section id="section-9.2">
+<section id="section-11.2">
         <h3 id="name-informative-references">
-<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-11.2" class="section-number selfRef">11.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
+<dt id="DC-AI-COST">[DC-AI-COST]</dt>
+        <dd>
+<span class="refTitle">"Generative AI Breaks The Data Center - Data Center Infrastructure And Operating Costs Projected To Increase To Over $76 Billion By 2028"</span>, <span class="seriesInfo">Forbes, Tirias Research Report </span>, <time datetime="2023" class="refDate">2023</time>. </dd>
+<dd class="break"></dd>
+<dt id="EDGE-ENERGY">[EDGE-ENERGY]</dt>
+        <dd>
+<span class="refTitle">"Estimating energy consumption of cloud, fog, and edge computing infrastructures"</span>, <span class="seriesInfo">IEEE Transactions on Sustainable Computing </span>, <time datetime="2019" class="refDate">2019</time>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.contreras-alto-service-edge">[I-D.contreras-alto-service-edge]</dt>
         <dd>
 <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Randriamasy, S.</span>, <span class="refAuthor">Ros-Giralt, J.</span>, <span class="refAuthor">Perez, D. A. L.</span>, and <span class="refAuthor">C. E. Rothenberg</span>, <span class="refTitle">"Use of ALTO for Determining Service Edge"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-contreras-alto-service-edge-10</span>, <time datetime="2023-10-13" class="refDate">13 October 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-contreras-alto-service-edge-10">https://datatracker.ietf.org/doc/html/draft-contreras-alto-service-edge-10</a>&gt;</span>. </dd>
@@ -1474,6 +1692,14 @@ service placement or selection.<a href="#section-4-4" class="pilcrow">¶</a></p>
 <dt id="I-D.dunbar-cats-edge-service-metrics">[I-D.dunbar-cats-edge-service-metrics]</dt>
         <dd>
 <span class="refAuthor">Dunbar, L.</span>, <span class="refAuthor">Majumdar, K.</span>, <span class="refAuthor">Mishra, G. S.</span>, <span class="refAuthor">Wang, H.</span>, and <span class="refAuthor">H. Song</span>, <span class="refTitle">"5G Edge Services Use Cases"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-dunbar-cats-edge-service-metrics-01</span>, <time datetime="2023-07-06" class="refDate">6 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-dunbar-cats-edge-service-metrics-01">https://datatracker.ietf.org/doc/html/draft-dunbar-cats-edge-service-metrics-01</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.llc-teas-dc-aware-topo-model">[I-D.llc-teas-dc-aware-topo-model]</dt>
+        <dd>
+<span class="refAuthor">Lee, Y.</span>, <span class="refAuthor">Liu, X.</span>, and <span class="refAuthor">L. M. Contreras</span>, <span class="refTitle">"DC aware TE topology model"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-llc-teas-dc-aware-topo-model-03</span>, <time datetime="2023-07-10" class="refDate">10 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-llc-teas-dc-aware-topo-model-03">https://datatracker.ietf.org/doc/html/draft-llc-teas-dc-aware-topo-model-03</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="LF-EDGE">[LF-EDGE]</dt>
+        <dd>
+<span class="refTitle">"Linux Foundation Edge"</span>, <span class="seriesInfo">https://www.lfedge.org/ </span>, <time datetime="2023-03" class="refDate">March 2023</time>. </dd>
 <dd class="break"></dd>
 <dt id="NFV-INF">[NFV-INF]</dt>
         <dd>
@@ -1526,6 +1752,14 @@ service placement or selection.<a href="#section-4-4" class="pilcrow">¶</a></p>
 <div class="email">
 <span>Email:</span>
 <a href="mailto:jros@qti.qualcomm.com" class="email">jros@qti.qualcomm.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Roland Schott</span></div>
+<div dir="auto" class="left"><span class="org">Deutsche Telekom</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:Roland.Schott@telekom.de" class="email">Roland.Schott@telekom.de</a>
 </div>
 </address>
 </section>
