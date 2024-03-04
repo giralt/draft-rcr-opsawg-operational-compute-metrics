@@ -1191,7 +1191,7 @@ common understanding and exposure scheme for metrics reflecting compute and comm
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-metrics-exposure" class="internal xref">Metrics Exposure</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-metrics-selection-and-expos" class="internal xref">Metrics Selection and Exposure</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
                 <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-edge-resources" class="internal xref">Edge Resources</a></p>
@@ -1201,6 +1201,29 @@ common understanding and exposure scheme for metrics reflecting compute and comm
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3">
                 <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="auto internal xref">6.3</a>.  <a href="#name-cloud-resources" class="internal xref">Cloud Resources</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.4">
+                <p id="section-toc.1-1.6.2.4.1"><a href="#section-6.4" class="auto internal xref">6.4</a>.  <a href="#name-considerations-about-metric" class="internal xref">Considerations about Metrics</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.5">
+                <p id="section-toc.1-1.6.2.5.1"><a href="#section-6.5" class="auto internal xref">6.5</a>.  <a href="#name-metric-dimensions" class="internal xref">Metric Dimensions</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.6">
+                <p id="section-toc.1-1.6.2.6.1"><a href="#section-6.6" class="auto internal xref">6.6</a>.  <a href="#name-abstraction-level-and-infor" class="internal xref">Abstraction Level and Information Access</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.7">
+                <p id="section-toc.1-1.6.2.7.1"><a href="#section-6.7" class="auto internal xref">6.7</a>.  <a href="#name-distribution-and-exposure-m" class="internal xref">Distribution and Exposure Mechanisms</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.7.2.1">
+                    <p id="section-toc.1-1.6.2.7.2.1.1"><a href="#section-6.7.1" class="auto internal xref">6.7.1</a>.  <a href="#name-metric-distribution-computi" class="internal xref">Metric Distribution Computing-Aware Traffic Steering (CATS)</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.7.2.2">
+                    <p id="section-toc.1-1.6.2.7.2.2.1"><a href="#section-6.7.2" class="auto internal xref">6.7.2</a>.  <a href="#name-metric-exposure-with-extens" class="internal xref">Metric Exposure with Extensions of ALTO</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.7.2.3">
+                    <p id="section-toc.1-1.6.2.7.2.3.1"><a href="#section-6.7.3" class="auto internal xref">6.7.3</a>.  <a href="#name-exposure-of-abstracted-gene" class="internal xref">Exposure of Abstracted Generic Metrics</a></p>
+</li>
+                </ul>
 </li>
             </ul>
 </li>
@@ -1415,7 +1438,7 @@ many others. Yet this innovation comes with a high cost in terms of processing a
 consumption. While data centers are already running at capacity, it is projected
 that transitioning current search engine queries to leverage generative AI will
 increase costs by 10 times compared to traditional search methods <span>[<a href="#DC-AI-COST" class="cite xref">DC-AI-COST</a>]</span>. As (1) computing
-nodes (CPUs and GPUs) are deployed to build the edge cloud through
+nodes (CPUs, GPUs, and NPUs) are deployed to build the edge cloud leveraging
 technologies like 5G and (2) with billions of mobile user devices globally providing a large
 untapped computational platform, shifting part of the processing from the cloud to the
 edge becomes a viable and necessary step towards enabling the AI-transition.
@@ -1552,15 +1575,15 @@ by ALTO at the time of deciding the placement of the microservices in the networ
       <h2 id="name-production-and-consumption-">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-production-and-consumption-" class="section-name selfRef">Production and Consumption Scenarios of Compute-related Information</a>
       </h2>
-<p id="section-5-1">It is important to understand the scenarios of production and consumption of compute-related information in combination with information related to communication. Leveraging such combination enables the possibility of resource and workload placement optimization, leading to both operational cost reductions to the operator and service provider as well as an improvement on the service level experienced by the users.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-1">It is important to understand the scenarios of production and consumption of compute-related information in combination with information related to communication. Leveraging such combination enables the possibility of resource and workload placement optimization, leading to both operational cost reductions to the operator and service provider as well as an improvement on the service level experienced by the end users.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <div id="producers-of-compute-related-information">
 <section id="section-5.1">
         <h3 id="name-producers-of-compute-relate">
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-producers-of-compute-relate" class="section-name selfRef">Producers of Compute-Related Information</a>
         </h3>
-<p id="section-5.1-1">The information relative to compute (i.e., processing capabilities, memory, and storage capacity) can be structured in two ways. On one hand, the information corresponding to the raw compute resources; on the other hand, the information of resources allocated or in use by a specific application or service function.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.1-2">The former is typically provided by the management systems enabling the virtualization of the physical resources for a later assignment to processes running on top. Cloud Managers or Virtual Infrastructure Managers are the entities which manage those resources. These management systems offer APIs from where to retrieve the available resources in a compute facility. Thus, it can be expected that these APIs can be used for the consumption of such information. Once the raw resources are retrieved from the various compute facilities, it could be possible to generate topological network views of them, as being proposed in <span>[<a href="#I-D.llc-teas-dc-aware-topo-model" class="cite xref">I-D.llc-teas-dc-aware-topo-model</a>]</span>.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
-<p id="section-5.1-3">Regarding the resources allocated or in use by a specific application or service function, two situations apply. The total allocation and the allocation per service or application. In the first case, the information can be supplied by the virtualization management systems described before. For the specific allocation per service, it can be expected that the specific management systems of the service or application is capable to provide the resources being used at run time typically as part of the allocated ones. In this last scenario, it is also reasonable to expect the availability of APIs offering such information, even though it can be particular to a service or application.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1-1">The information relative to compute (i.e., processing capabilities, memory, and storage capacity) can be structured in two ways. On one hand, the information corresponding to the raw compute resources; on the other hand, the information of resources allocated or utilized by a specific application or service function.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1-2">The former is typically provided by the management systems enabling the virtualization of the physical resources for a later assignment to the processes running on top. Cloud Managers or Virtual Infrastructure Managers are the entities that manage those resources. These management systems offer APIs to access the available resources in the computing facility. Thus, it can be expected that these APIs can be used for the consumption of such information. Once the raw resources are retrieved from the various compute facilities, it could be possible to generate topological network views of them, as being proposed in <span>[<a href="#I-D.llc-teas-dc-aware-topo-model" class="cite xref">I-D.llc-teas-dc-aware-topo-model</a>]</span>.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1-3">Regarding the resources allocated or utilized by a specific application or service function, two situations apply: (1) The total allocation and (2) the allocation per service or application. In the first case, the information can be supplied by the virtualization management systems described before. For the specific per-service allocation, it can be expected that the specific management systems of the service or application is capable to provide the resources being used at run time typically as part of the allocated ones. In this last scenario, it is also reasonable to expect the availability of APIs offering this information, even though they can be specific to the service or application.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="consumers-of-compute-related-information">
@@ -1568,17 +1591,17 @@ by ALTO at the time of deciding the placement of the microservices in the networ
         <h3 id="name-consumers-of-compute-relate">
 <a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-consumers-of-compute-relate" class="section-name selfRef">Consumers of Compute-Related Information</a>
         </h3>
-<p id="section-5.2-1">The consumption of compute-related information is relative to the different phases of the service lifecycle. This means that such information can be consumed in different points of time and for different purposes.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-1">The consumption of compute-related information is relative to the different phases of the service lifecycle. This means that this information can be consumed in different points of time and for different purposes.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2-2">The expected consumers can be both external or internal to the network. As external consumers it is possible to consider external application management systems requiring resource availability information for service function placement decision, workload migration in the case of consuming raw resources, or requiring information on the usage of resources for service assurance or service scaling, among others.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
-<p id="section-5.2-3">As internal consumers it is possible to consider network management entities requiring view on the level of resource usage for traffic steering (as the Path Selector in <span>[<a href="#I-D.ldbc-cats-framework" class="cite xref">I-D.ldbc-cats-framework</a>]</span>), load balance, or analytics, among others.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
+<p id="section-5.2-3">As internal consumers, it is possible to consider network management entities requiring information on the level of resource utilization for traffic steering (as the Path Selector in <span>[<a href="#I-D.ldbc-cats-framework" class="cite xref">I-D.ldbc-cats-framework</a>]</span>), load balance, or analytics, among others.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
-<div id="metrics-exposure">
+<div id="metrics-selection-and-exposure">
 <section id="section-6">
-      <h2 id="name-metrics-exposure">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-metrics-exposure" class="section-name selfRef">Metrics Exposure</a>
+      <h2 id="name-metrics-selection-and-expos">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-metrics-selection-and-expos" class="section-name selfRef">Metrics Selection and Exposure</a>
       </h2>
 <p id="section-6-1">Regarding metrics exposure one can distinguish the topics of (1)
 how the metrics are exposed and (2) which kind of metrics need to be exposed.
@@ -1605,41 +1628,39 @@ latency or traffic breakout.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
 <p id="section-6.2-1">Network resources relate to the traditional network
 infrastructure. The next table provides an overview of some of the
 commonly used metrics.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<span id="name-examples-of-network-resourc"></span><div id="net_res">
 <table class="center" id="table-2">
-          <caption><a href="#table-2" class="selfRef">Table 2</a></caption>
+          <caption>
+<a href="#table-2" class="selfRef">Table 2</a>:
+<a href="#name-examples-of-network-resourc" class="selfRef">Examples of network resource metrics.</a>
+          </caption>
 <thead>
             <tr>
-              <th class="text-left" rowspan="1" colspan="1">Network</th>
               <th class="text-left" rowspan="1" colspan="1">Kind of Resource</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">Path #1</td>
               <td class="text-left" rowspan="1" colspan="1">QoS</td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1"> </td>
               <td class="text-left" rowspan="1" colspan="1">Latency</td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1"> </td>
               <td class="text-left" rowspan="1" colspan="1">Bandwidth</td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1"> </td>
               <td class="text-left" rowspan="1" colspan="1">RTT</td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1"> </td>
               <td class="text-left" rowspan="1" colspan="1">Packet Loss</td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1"> </td>
               <td class="text-left" rowspan="1" colspan="1">Jitter</td>
             </tr>
           </tbody>
         </table>
+</div>
 </section>
 </div>
 <div id="cloud-resources">
@@ -1649,53 +1670,246 @@ commonly used metrics.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
         </h3>
 <p id="section-6.3-1">The next table provides an example of parameters that
 could be exposed:<a href="#section-6.3-1" class="pilcrow">¶</a></p>
+<span id="name-examples-of-cloud-resource-"></span><div id="cloud_res">
 <table class="center" id="table-3">
-          <caption><a href="#table-3" class="selfRef">Table 3</a></caption>
+          <caption>
+<a href="#table-3" class="selfRef">Table 3</a>:
+<a href="#name-examples-of-cloud-resource-" class="selfRef">Examples of cloud resource parameters.</a>
+          </caption>
 <thead>
             <tr>
               <th class="text-left" rowspan="1" colspan="1">CPU</th>
               <th class="text-left" rowspan="1" colspan="1">Compute</th>
-              <th class="text-left" rowspan="1" colspan="1">Sum of available cpu resources</th>
+              <th class="text-left" rowspan="1" colspan="1">Available cpu resources</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">Memory</td>
               <td class="text-left" rowspan="1" colspan="1">Compute</td>
-              <td class="text-left" rowspan="1" colspan="1">Sum of available memory</td>
+              <td class="text-left" rowspan="1" colspan="1">Available memory</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">Storage</td>
               <td class="text-left" rowspan="1" colspan="1">Storage</td>
-              <td class="text-left" rowspan="1" colspan="1">Sum of available storage</td>
+              <td class="text-left" rowspan="1" colspan="1">Available storage</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">Configmaps</td>
               <td class="text-left" rowspan="1" colspan="1">Object</td>
-              <td class="text-left" rowspan="1" colspan="1">Sum of config maps</td>
+              <td class="text-left" rowspan="1" colspan="1">Configuration and topology maps</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">Secrets</td>
               <td class="text-left" rowspan="1" colspan="1">Object</td>
-              <td class="text-left" rowspan="1" colspan="1">Sum of possible secrets</td>
+              <td class="text-left" rowspan="1" colspan="1">Possible secrets</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">Pods</td>
               <td class="text-left" rowspan="1" colspan="1">Object</td>
-              <td class="text-left" rowspan="1" colspan="1">Sum of possible pods</td>
+              <td class="text-left" rowspan="1" colspan="1">Possible pods</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">Jobs</td>
               <td class="text-left" rowspan="1" colspan="1">Object</td>
-              <td class="text-left" rowspan="1" colspan="1">Sum of all parallel jobs</td>
+              <td class="text-left" rowspan="1" colspan="1">Concurrent jobs</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">Services</td>
               <td class="text-left" rowspan="1" colspan="1">Object</td>
-              <td class="text-left" rowspan="1" colspan="1">Sum of parallel services</td>
+              <td class="text-left" rowspan="1" colspan="1">Concurrent services</td>
             </tr>
           </tbody>
         </table>
+</div>
+</section>
+</div>
+<div id="considerations-about-metrics">
+<section id="section-6.4">
+        <h3 id="name-considerations-about-metric">
+<a href="#section-6.4" class="section-number selfRef">6.4. </a><a href="#name-considerations-about-metric" class="section-name selfRef">Considerations about Metrics</a>
+        </h3>
+<p id="section-6.4-1">The metrics considered in this document should be used to support
+decisions for selection and deployment of services and applications.
+Further iterations of this document may consider additional
+life cycle operations such as assurance and relevant metrics.<a href="#section-6.4-1" class="pilcrow">¶</a></p>
+<p id="section-6.4-2">The network netrics listed above are specified in a number of
+IETF documents such as RFC 9439 <span>[<a href="#I-D.ietf-alto-performance-metrics" class="cite xref">I-D.ietf-alto-performance-metrics</a>]</span>,
+which itself leverages on RFC 7679. The work on compute metrics
+at the IETF, on the other hand, is in its first stages and merely
+relates to low-level infrastructure metrics such as in <span>[<a href="#RFC7666" class="cite xref">RFC7666</a>]</span>.
+However:<a href="#section-6.4-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6.4-3.1">
+            <p id="section-6.4-3.1.1">decisions for service deployment and selection also involve
+decisions that require an aggregated view for instance at the
+service level,<a href="#section-6.4-3.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-6.4-3.2">
+            <p id="section-6.4-3.2.1">deciding entities may only have partial access to the compute
+information and actually do not need to have all the details.
+A number of public tools and methods to test compute facility
+performances are made available by cloud service providers or
+service management businesses, see <span>[<a href="#UPCLOUD" class="cite xref">UPCLOUD</a>]</span> and <span>[<a href="#IR" class="cite xref">IR</a>]</span> to name a few.
+However, for the proposed performance metrics, their definition and
+acquisition method may differ from one provider to the other,
+making it thus challenging to compare performances across different
+providers. The latter aspect is particularly problematic for
+applications running at the edge where a complex ecosystem of
+operators, vendors, and application providers is involved
+and calls for a common standardized definition.<a href="#section-6.4-3.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+<div id="metric-dimensions">
+<section id="section-6.5">
+        <h3 id="name-metric-dimensions">
+<a href="#section-6.5" class="section-number selfRef">6.5. </a><a href="#name-metric-dimensions" class="section-name selfRef">Metric Dimensions</a>
+        </h3>
+<p id="section-6.5-1">Upon exploring existing work, this draft
+proposes to consider a number of dimensions before identifying
+the compute metrics needed to take a service operation decision.
+This list is initial and is to be updated upon further discussion.<a href="#section-6.5-1" class="pilcrow">¶</a></p>
+<p id="section-6.5-2">Dimensions helping to identify needed compute metrics:<a href="#section-6.5-2" class="pilcrow">¶</a></p>
+<span id="name-dimensions-to-consider-when"></span><div id="comp_dimensions">
+<table class="center" id="table-4">
+          <caption>
+<a href="#table-4" class="selfRef">Table 4</a>:
+<a href="#name-dimensions-to-consider-when" class="selfRef">Dimensions to consider when idenfitying compute metrics.</a>
+          </caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Dimension</th>
+              <th class="text-left" rowspan="1" colspan="1">Definition</th>
+              <th class="text-left" rowspan="1" colspan="1">Examples</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Decision</td>
+              <td class="text-left" rowspan="1" colspan="1">what are the metrics used for</td>
+              <td class="text-left" rowspan="1" colspan="1">monitoring, benchmarking, service selection and placement</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Driving KPI</td>
+              <td class="text-left" rowspan="1" colspan="1">what is assessed with the metrics</td>
+              <td class="text-left" rowspan="1" colspan="1">speed, scalability, cost, stability</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Decision scope</td>
+              <td class="text-left" rowspan="1" colspan="1">different granularities</td>
+              <td class="text-left" rowspan="1" colspan="1">infrastructure node/cluster, compute service, end-to-end application</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Receiving entity</td>
+              <td class="text-left" rowspan="1" colspan="1">receiving metrics</td>
+              <td class="text-left" rowspan="1" colspan="1">router, centralized controller, application management</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Deciding entity</td>
+              <td class="text-left" rowspan="1" colspan="1">computing decisions</td>
+              <td class="text-left" rowspan="1" colspan="1">router, centralized controller, application management</td>
+            </tr>
+          </tbody>
+        </table>
+</div>
+<p id="section-6.5-4">When metrics are documented according to their life cycle action, it allow for
+a more reliable interpretation and informed utilization of the metrics.
+The table below provides some examples:<a href="#section-6.5-4" class="pilcrow">¶</a></p>
+<span id="name-metrics-documented-by-life-"></span><div id="metric_action">
+<table class="center" id="table-5">
+          <caption>
+<a href="#table-5" class="selfRef">Table 5</a>:
+<a href="#name-metrics-documented-by-life-" class="selfRef">Metrics documented by life cycle action.</a>
+          </caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Lifecycle action</th>
+              <th class="text-left" rowspan="1" colspan="1">Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Acquisition method</td>
+              <td class="text-left" rowspan="1" colspan="1">telemetry, estimation</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Value processing</td>
+              <td class="text-left" rowspan="1" colspan="1">aggregation, abstraction</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Exposure</td>
+              <td class="text-left" rowspan="1" colspan="1">in-path distribution, off-path distribution</td>
+            </tr>
+          </tbody>
+        </table>
+</div>
+</section>
+</div>
+<div id="abstraction-level-and-information-access">
+<section id="section-6.6">
+        <h3 id="name-abstraction-level-and-infor">
+<a href="#section-6.6" class="section-number selfRef">6.6. </a><a href="#name-abstraction-level-and-infor" class="section-name selfRef">Abstraction Level and Information Access</a>
+        </h3>
+<p id="section-6.6-1">One important aspect to consider is that receiving entities that need to consume metrics to take selection or placement decisions do not always have access to computing information. In particular, several scenarios to be completed upon further discussions, may need to be considered among which:<a href="#section-6.6-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6.6-2.1">
+            <p id="section-6.6-2.1.1">the consumer is an ISP that does not own the compute infrastructure or has no access to full information. In this case the compute metrics will likely be estimated<a href="#section-6.6-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-6.6-2.2">
+            <p id="section-6.6-2.2.1">the consumer is an application that has no direct access to full information while the ISP has access to both network and compute information. However the ISP is willing to provide guidance to the application with abstract information.<a href="#section-6.6-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-6.6-2.3">
+            <p id="section-6.6-2.3.1">the consumer has access to full network and compute information and wants to use it for fine-grained decision making e.g. at the node/cluster level<a href="#section-6.6-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-6.6-2.4">
+            <p id="section-6.6-2.4.1">the consumer has access to full information but essentially needs guidance with abstracted information.<a href="#section-6.6-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-6.6-2.5">
+            <p id="section-6.6-2.5.1">the consumer has access to information that is abstracted or detailed depending on the metrics.<a href="#section-6.6-2.5.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-6.6-3">These scenarios further drive the selection of metrics upon the above mentioned dimensions.<a href="#section-6.6-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="distribution-and-exposure-mechanisms">
+<section id="section-6.7">
+        <h3 id="name-distribution-and-exposure-m">
+<a href="#section-6.7" class="section-number selfRef">6.7. </a><a href="#name-distribution-and-exposure-m" class="section-name selfRef">Distribution and Exposure Mechanisms</a>
+        </h3>
+<p id="section-6.7-1">Integration of network and compute metrics in decisions<a href="#section-6.7-1" class="pilcrow">¶</a></p>
+<div id="metric-distribution-computing-aware-traffic-steering-cats">
+<section id="section-6.7.1">
+          <h4 id="name-metric-distribution-computi">
+<a href="#section-6.7.1" class="section-number selfRef">6.7.1. </a><a href="#name-metric-distribution-computi" class="section-name selfRef">Metric Distribution Computing-Aware Traffic Steering (CATS)</a>
+          </h4>
+<p id="section-6.7.1-1">Other existing work at the IETF CATS WG has explored the collection and distribution of computing metrics in <span>[<a href="#I-D.ldbc-cats-framework" class="cite xref">I-D.ldbc-cats-framework</a>]</span>. They consider three deployment models in their deployment considerations:
+- distributed among network devices directly,
+- collected by a centralized control plane,
+- hybrid where a part of computing metrics are distributed among involved network devices, and others may be collected by a centralized control plane.
+In the hybrid mode, the draft suggests that some static information (e.g., capabilities information) can be distributed among network devices since they are quite stable. Frequent changing information (e.g., resource utilization) can be collected by a centralized control plane to avoid frequent flooding in the distributed control plane.<a href="#section-6.7.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.7.1-2">Beside the required extensions to the routing protocols, the hybrid mode stresses the impact of the dynamicity of the distributed metrics and the need to carefully sort out the metric exposure mode w.r.t. their dynamicity.<a href="#section-6.7.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="metric-exposure-with-extensions-of-alto">
+<section id="section-6.7.2">
+          <h4 id="name-metric-exposure-with-extens">
+<a href="#section-6.7.2" class="section-number selfRef">6.7.2. </a><a href="#name-metric-exposure-with-extens" class="section-name selfRef">Metric Exposure with Extensions of ALTO</a>
+          </h4>
+<p id="section-6.7.2-1">The ALTO protocol has been difined to expose an abstracted network topology and related path costs in <span>[<a href="#RFC7285" class="cite xref">RFC7285</a>]</span>. Its extension RFC 9240 allows to define entities on which properties can be defined, while <span>[<a href="#I-D.contreras-alto-service-edge" class="cite xref">I-D.contreras-alto-service-edge</a>]</span> introduces a proposed entity property that allows to consider an entity as both a network element with network related costs and properties and a element of a data centzer with compute related properties. Such an exposure mechanism is particularly useful for decision making entities which are centralized and located off the network paths.<a href="#section-6.7.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="exposure-of-abstracted-generic-metrics">
+<section id="section-6.7.3">
+          <h4 id="name-exposure-of-abstracted-gene">
+<a href="#section-6.7.3" class="section-number selfRef">6.7.3. </a><a href="#name-exposure-of-abstracted-gene" class="section-name selfRef">Exposure of Abstracted Generic Metrics</a>
+          </h4>
+<p id="section-6.7.3-1">In some cases, whether due to unavailable information details or for the sake of simplicity, a consumer may need reliable but simple guidance to select a service. To this end, abstracted generic metrics may be useful.<a href="#section-6.7.3-1" class="pilcrow">¶</a></p>
+<p id="section-6.7.3-2">One can consider a generic metric that can be named “computingcost” and is applied to a contact point to one or more edge servers such as a load balancer, for short  an edge server, to reflect the network operator policy and preferences.  The metric “computingcost” results from an abstraction method that is hidden from users, similarly to the metric “routingcost” defined in <span>[<a href="#RFC7285" class="cite xref">RFC7285</a>]</span>.  For instance, “computingcost” may be higher for an edge server located far away, or in disliked geographical areas, or owned by a provider who does not share information with the Internet Service Provider (ISP) or with which ISP has a poorer commercial agreement.  “computingcost” may also reflect environmental preferences in terms, for instance, of energy source, average consumption vs. local climate, location adequacy vs. climate.<a href="#section-6.7.3-2" class="pilcrow">¶</a></p>
+<p id="section-6.7.3-3">One may also consider a generic metric named “computingperf”, applied to an edge server, that reflects its performances, based on measurements or estimations by the ISP or combination thereof.  An edge server with a higher “computingperf” value will be preferred.  “computingperf” can be based on a vector of one or more metrics reflecting, for instance, responsiveness, reliability of cloud services based on metrics such as latency, packet loss, jitter, time to first and/or last byte, or a single value reflecting a global performance score.<a href="#section-6.7.3-3" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 </section>
@@ -1717,6 +1931,10 @@ could be exposed:<a href="#section-6.3-1" class="pilcrow">¶</a></p>
           <p id="section-7-2.3.1">References providing service metrics including compute-related information: <span>[<a href="#I-D.dunbar-cats-edge-service-metrics" class="cite xref">I-D.dunbar-cats-edge-service-metrics</a>]</span> proposes metrics associated to services running in compute infrastructures. Some of these metrics do not depend on the infrastructure behavior itself but from where such compute infrastructure is topologically located.<a href="#section-7-2.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
+<p id="section-7-3">Other existing work at the IETF CATS WG has explored the collection
+and distribution of computing metrics in <span>[<a href="#I-D.ldbc-cats-framework" class="cite xref">I-D.ldbc-cats-framework</a>]</span>.
+In their deployment considerations, they consider three models: distributed,
+centralized and hybrid.<a href="#section-7-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="guiding-principles">
@@ -1837,6 +2055,10 @@ service placement or selection.<a href="#section-8-4" class="pilcrow">¶</a></p>
         <dd>
 <span class="refAuthor">Lee, Y.</span>, <span class="refAuthor">Liu, X.</span>, and <span class="refAuthor">L. M. Contreras</span>, <span class="refTitle">"DC aware TE topology model"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-llc-teas-dc-aware-topo-model-03</span>, <time datetime="2023-07-10" class="refDate">10 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-llc-teas-dc-aware-topo-model-03">https://datatracker.ietf.org/doc/html/draft-llc-teas-dc-aware-topo-model-03</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="IR">[IR]</dt>
+        <dd>
+<span class="refTitle">"Cloud Performance Testing Best Tips and Tricks"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.ir.com/guides/cloud-performance-testing">https://www.ir.com/guides/cloud-performance-testing</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="LF-EDGE">[LF-EDGE]</dt>
         <dd>
 <span class="refTitle">"Linux Foundation Edge"</span>, <span class="seriesInfo">https://www.lfedge.org/ </span>, <time datetime="2023-03" class="refDate">March 2023</time>. </dd>
@@ -1850,8 +2072,12 @@ service placement or selection.<a href="#section-8-4" class="pilcrow">¶</a></p>
 <span class="refTitle">"ETSI GS NFV-TST 008 V3.3.1, NFVI Compute and Network Metrics Specification"</span>, <time datetime="2020-06-01" class="refDate">1 June 2020</time>, <span>&lt;<a href="https://www.etsi.org/deliver/etsi_gs/NFV-TST/001_099/008/03.03.01_60/gs_NFV-TST008v030301p.pdf">https://www.etsi.org/deliver/etsi_gs/NFV-TST/001_099/008/03.03.01_60/gs_NFV-TST008v030301p.pdf</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7666">[RFC7666]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Asai, H.</span>, <span class="refAuthor">MacFaden, M.</span>, <span class="refAuthor">Schoenwaelder, J.</span>, <span class="refAuthor">Shima, K.</span>, and <span class="refAuthor">T. Tsou</span>, <span class="refTitle">"Management Information Base for Virtual Machines Controlled by a Hypervisor"</span>, <span class="seriesInfo">RFC 7666</span>, <span class="seriesInfo">DOI 10.17487/RFC7666</span>, <time datetime="2015-10" class="refDate">October 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7666">https://www.rfc-editor.org/rfc/rfc7666</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="UPCLOUD">[UPCLOUD]</dt>
+      <dd>
+<span class="refTitle">"How to benchmark Cloud Servers"</span>, <time datetime="2023-05" class="refDate">May 2023</time>, <span>&lt;<a href="https://upcloud.com/resources/tutorials/how-to-benchmark-cloud-servers">https://upcloud.com/resources/tutorials/how-to-benchmark-cloud-servers</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
