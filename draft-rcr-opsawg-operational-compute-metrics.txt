@@ -5,12 +5,12 @@
 Network Working Group                                     S. Randriamasy
 Internet-Draft                                           Nokia Bell Labs
 Intended status: Informational                           L. M. Contreras
-Expires: 4 September 2024                                     Telefonica
+Expires: 5 September 2024                                     Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
                                                                R. Schott
                                                         Deutsche Telekom
-                                                            3 March 2024
+                                                            4 March 2024
 
 
  Joint Exposure of Network and Compute Information for Infrastructure-
@@ -61,7 +61,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 September 2024.
+   This Internet-Draft will expire on 5 September 2024.
 
 Copyright Notice
 
@@ -83,21 +83,25 @@ Table of Contents
    2.  Conventions and Definitions
    3.  Problem Space and Needs
    4.  Use Cases
-     4.1.  Open Abstraction for Edge Computing
-     4.2.  Optimized placement of microservice components
-     4.3.  Distributed AI Workloads
+     4.1.  Distributed AI Workloads
+     4.2.  Open Abstraction for Edge Computing
+     4.3.  Optimized Placement of Microservice Components
    5.  Production and Consumption Scenarios of Compute-related
            Information
-     5.1.  Producers of compute-related information
-     5.2.  Consumers of compute-related information
-   6.  Guiding Principles
+     5.1.  Producers of Compute-Related Information
+     5.2.  Consumers of Compute-Related Information
+   6.  Metrics Exposure
+     6.1.  Edge Resources
+     6.2.  Network Resources
+     6.3.  Cloud Resources
    7.  Related Work
-   8.  GAP Analysis
-   9.  Security Considerations
-   10. IANA Considerations
-   11. References
-     11.1.  Normative References
-     11.2.  Informative References
+   8.  Guiding Principles
+   9.  GAP Analysis
+   10. Security Considerations
+   11. IANA Considerations
+   12. References
+     12.1.  Normative References
+     12.2.  Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -245,68 +249,7 @@ Table of Contents
 
 4.  Use Cases
 
-4.1.  Open Abstraction for Edge Computing
-
-   Modern applications such as AR/VR, V2X, or IoT, require bringing
-   compute closer to the edge in order to meet strict bandwidth,
-   latency, and jitter requirements.  While this deployment process
-   resembles the path taken by the main cloud providers (notably, AWS,
-   Facebook, Google and Microsoft) to deploy their large-scale
-   datacenters, the edge presents a key difference: datacenter clouds
-   (both in terms of their infrastructure and the applications run by
-   them) are owned and managed by a single organization, whereas edge
-   clouds involve a complex ecosystem of operators, vendors, and
-   application providers, all striving to provide a quality end-to-end
-   solution to the user.  This implies that, while the traditional cloud
-   has been implemented for the most part by using vertically optimized
-   and closed architectures, the edge will necessarily need to rely on a
-   complete ecosystem of carefully designed open standards to enable
-   horizontal interoperability across all the involved parties.  This
-   document envisions ALTO playing a role as part of the ecosystem of
-   open standards that are necessary to deploy and operate the edge
-   cloud.
-
-   As an example, consider a user of an XR application who arrives at
-   his/her home by car.  The application runs by leveraging compute
-   capabilities from both the car and the public 5G edge cloud.  As the
-   user parks the car, 5G coverage may diminish (due to building
-   interference) making the home local Wi-Fi connectivity a better
-   choice.  Further, instead of relying on computational resources from
-   the car and the 5G edge cloud, latency can be reduced by leveraging
-   computing devices (PCs, laptops, tablets) available from the home
-   edge cloud.  The application's decision to switch from one domain to
-   another, however, demands knowledge about the compute and
-   communication resources available both in the 5G and the Wi-Fi
-   domains, therefore requiring interoperability across multiple
-   industry standards (for instance, IETF and 3GPP on the public side,
-   and IETF and LF Edge [LF-EDGE] on the private home side).  ALTO can
-   be positioned to act as an abstraction layer supporting the exposure
-   of communication and compute information independently of the type of
-   domain the application is currently residing in.
-
-   Future versions of this document will elaborate further on this use
-   case.
-
-4.2.  Optimized placement of microservice components
-
-   Current applications are transitioning from a monolithic service
-   architecture towards the composition of microservice components,
-   following cloud-native trends.  The set of microservices can have
-   associated SLOs which impose constraints not only in terms of
-   required compute resources (CPU, storage, ...) dependent on the
-   compute facilities available, but also in terms of performance
-   indicators such as latency, bandwidth, etc, which impose restrictions
-   in the networking capabilities connecting the computing facilities.
-   Even more complex constrains, such as affinity among certain
-   microservices components could require complex calculations for
-   selecting the most appropriate compute nodes taken into consideration
-   both network and compute information.
-
-   Thus, service/application orchestrators can benefit from the
-   information exposed by ALTO at the time of deciding the placement of
-   the microservices in the network.
-
-4.3.  Distributed AI Workloads
+4.1.  Distributed AI Workloads
 
    Generative AI is a technological feat that opens up many applications
    such as holding conversations, generating art, developing a research
@@ -385,6 +328,67 @@ Table of Contents
    optimized decisions on selecting the right computational resource,
    supporting the efficient execution of hybrid AI workloads.
 
+4.2.  Open Abstraction for Edge Computing
+
+   Modern applications such as AR/VR, V2X, or IoT, require bringing
+   compute closer to the edge in order to meet strict bandwidth,
+   latency, and jitter requirements.  While this deployment process
+   resembles the path taken by the main cloud providers (notably, AWS,
+   Facebook, Google and Microsoft) to deploy their large-scale
+   datacenters, the edge presents a key difference: datacenter clouds
+   (both in terms of their infrastructure and the applications run by
+   them) are owned and managed by a single organization, whereas edge
+   clouds involve a complex ecosystem of operators, vendors, and
+   application providers, all striving to provide a quality end-to-end
+   solution to the user.  This implies that, while the traditional cloud
+   has been implemented for the most part by using vertically optimized
+   and closed architectures, the edge will necessarily need to rely on a
+   complete ecosystem of carefully designed open standards to enable
+   horizontal interoperability across all the involved parties.  This
+   document envisions ALTO playing a role as part of the ecosystem of
+   open standards that are necessary to deploy and operate the edge
+   cloud.
+
+   As an example, consider a user of an XR application who arrives at
+   his/her home by car.  The application runs by leveraging compute
+   capabilities from both the car and the public 5G edge cloud.  As the
+   user parks the car, 5G coverage may diminish (due to building
+   interference) making the home local Wi-Fi connectivity a better
+   choice.  Further, instead of relying on computational resources from
+   the car and the 5G edge cloud, latency can be reduced by leveraging
+   computing devices (PCs, laptops, tablets) available from the home
+   edge cloud.  The application's decision to switch from one domain to
+   another, however, demands knowledge about the compute and
+   communication resources available both in the 5G and the Wi-Fi
+   domains, therefore requiring interoperability across multiple
+   industry standards (for instance, IETF and 3GPP on the public side,
+   and IETF and LF Edge [LF-EDGE] on the private home side).  ALTO can
+   be positioned to act as an abstraction layer supporting the exposure
+   of communication and compute information independently of the type of
+   domain the application is currently residing in.
+
+   Future versions of this document will elaborate further on this use
+   case.
+
+4.3.  Optimized Placement of Microservice Components
+
+   Current applications are transitioning from a monolithic service
+   architecture towards the composition of microservice components,
+   following cloud-native trends.  The set of microservices can have
+   associated SLOs which impose constraints not only in terms of
+   required compute resources (CPU, storage, ...) dependent on the
+   compute facilities available, but also in terms of performance
+   indicators such as latency, bandwidth, etc, which impose restrictions
+   in the networking capabilities connecting the computing facilities.
+   Even more complex constrains, such as affinity among certain
+   microservices components could require complex calculations for
+   selecting the most appropriate compute nodes taken into consideration
+   both network and compute information.
+
+   Thus, service/application orchestrators can benefit from the
+   information exposed by ALTO at the time of deciding the placement of
+   the microservices in the network.
+
 5.  Production and Consumption Scenarios of Compute-related Information
 
    It is important to understand the scenarios of production and
@@ -395,7 +399,7 @@ Table of Contents
    operator and service provider as well as an improvement on the
    service level experienced by the users.
 
-5.1.  Producers of compute-related information
+5.1.  Producers of Compute-Related Information
 
    The information relative to compute (i.e., processing capabilities,
    memory, and storage capacity) can be structured in two ways.  On one
@@ -427,7 +431,7 @@ Table of Contents
    such information, even though it can be particular to a service or
    application.
 
-5.2.  Consumers of compute-related information
+5.2.  Consumers of Compute-Related Information
 
    The consumption of compute-related information is relative to the
    different phases of the service lifecycle.  This means that such
@@ -447,35 +451,72 @@ Table of Contents
    steering (as the Path Selector in [I-D.ldbc-cats-framework]), load
    balance, or analytics, among others.
 
-6.  Guiding Principles
+6.  Metrics Exposure
 
-   The driving principles for designing an interface to jointly extract
-   network and compute information are as follows:
+   Regarding metrics exposure one can distinguish the topics of (1) how
+   the metrics are exposed and (2) which kind of metrics need to be
+   exposed.  The infrastructure resources can be divided into network
+   and compute related resources.  Network based resources can roughly
+   be subdivided according to the network structure into edge, backbone,
+   and cloud resources.
 
-   P1.  Leverage metrics across working groups to avoid reinventing the
-   wheel.  For instance:
+   This section intends to give a brief outlook regarding these
+   resources for stimulating additional discussion with related work
+   going on in other IETF working groups or standardization bodies.
 
-   *  RFC 9439 [I-D.ietf-alto-performance-metrics] leverages IPPM
-      metrics from RFC 7679.
+6.1.  Edge Resources
 
-   *  Section 5.2 of [I-D.du-cats-computing-modeling-description]
-      considers delay as a good metric, since it is easy to use in both
-      compute and communication domains.  RFC 9439 also defines delay as
-      part of the performance metrics.
+   Edge resources are referring to latency, bandwidth, compute latency
+   or traffic breakout.
 
-   *  Section 6 of [I-D.du-cats-computing-modeling-description] proposes
-      to represent the network structure as graphs, which is similar to
-      the ALTO map services in [RFC7285].
+6.2.  Network Resources
 
-   P2.  Aim for simplicity, while ensuring the combined efforts don’t
-   leave technical gaps in supporting the full life cycle of service
-   deployment and selection.  For instance, the CATS working group is
-   covering path selection from a network standpoint, while ALTO (e.g.,
-   [RFC7285]) covers exposing of network information to the service
-   provider and the client application.  However, there is currently no
-   effort being pursued to expose compute information to the service
-   provider and the client application for service placement or
-   selection.
+   Network resources relate to the traditional network infrastructure.
+   The next table provides an overview of some of the commonly used
+   metrics.
+
+                      +=========+==================+
+                      | Network | Kind of Resource |
+                      +=========+==================+
+                      | Path #1 | QoS              |
+                      +---------+------------------+
+                      |         | Latency          |
+                      +---------+------------------+
+                      |         | Bandwidth        |
+                      +---------+------------------+
+                      |         | RTT              |
+                      +---------+------------------+
+                      |         | Packet Loss      |
+                      +---------+------------------+
+                      |         | Jitter           |
+                      +---------+------------------+
+
+                                 Table 2
+
+6.3.  Cloud Resources
+
+   The next table provides an example of parameters that could be
+   exposed:
+
+         +============+=========+================================+
+         | CPU        | Compute | Sum of available cpu resources |
+         +============+=========+================================+
+         | Memory     | Compute | Sum of available memory        |
+         +------------+---------+--------------------------------+
+         | Storage    | Storage | Sum of available storage       |
+         +------------+---------+--------------------------------+
+         | Configmaps | Object  | Sum of config maps             |
+         +------------+---------+--------------------------------+
+         | Secrets    | Object  | Sum of possible secrets        |
+         +------------+---------+--------------------------------+
+         | Pods       | Object  | Sum of possible pods           |
+         +------------+---------+--------------------------------+
+         | Jobs       | Object  | Sum of all parallel jobs       |
+         +------------+---------+--------------------------------+
+         | Services   | Object  | Sum of parallel services       |
+         +------------+---------+--------------------------------+
+
+                                  Table 3
 
 7.  Related Work
 
@@ -505,7 +546,37 @@ Table of Contents
       itself but from where such compute infrastructure is topologically
       located.
 
-8.  GAP Analysis
+8.  Guiding Principles
+
+   The driving principles for designing an interface to jointly extract
+   network and compute information are as follows:
+
+   P1.  Leverage metrics across working groups to avoid reinventing the
+   wheel.  For instance:
+
+   *  RFC 9439 [I-D.ietf-alto-performance-metrics] leverages IPPM
+      metrics from RFC 7679.
+
+   *  Section 5.2 of [I-D.du-cats-computing-modeling-description]
+      considers delay as a good metric, since it is easy to use in both
+      compute and communication domains.  RFC 9439 also defines delay as
+      part of the performance metrics.
+
+   *  Section 6 of [I-D.du-cats-computing-modeling-description] proposes
+      to represent the network structure as graphs, which is similar to
+      the ALTO map services in [RFC7285].
+
+   P2.  Aim for simplicity, while ensuring the combined efforts don’t
+   leave technical gaps in supporting the full life cycle of service
+   deployment and selection.  For instance, the CATS working group is
+   covering path selection from a network standpoint, while ALTO (e.g.,
+   [RFC7285]) covers exposing of network information to the service
+   provider and the client application.  However, there is currently no
+   effort being pursued to expose compute information to the service
+   provider and the client application for service placement or
+   selection.
+
+9.  GAP Analysis
 
    From this related work it is evident that compute-related metrics can
    serve several purposes, ranging from service instance instantiation
@@ -523,17 +594,17 @@ Table of Contents
    each of the operational concerns related to the different parts of a
    service life cycle.
 
-9.  Security Considerations
+10.  Security Considerations
 
    TODO Security
 
-10.  IANA Considerations
+11.  IANA Considerations
 
    This document has no IANA actions.
 
-11.  References
+12.  References
 
-11.1.  Normative References
+12.1.  Normative References
 
    [I-D.du-cats-computing-modeling-description]
               Du, Z., Fu, Y., Li, C., Huang, D., and Z. Fu, "Computing
@@ -575,7 +646,7 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-11.2.  Informative References
+12.2.  Informative References
 
    [DC-AI-COST]
               "Generative AI Breaks The Data Center - Data Center
