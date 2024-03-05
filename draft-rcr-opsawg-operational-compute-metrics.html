@@ -1043,7 +1043,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Randriamasy, et al.</td>
-<td class="center">Expires 5 September 2024</td>
+<td class="center">Expires 6 September 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1056,12 +1056,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-rcr-opsawg-operational-compute-metrics-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-03-04" class="published">4 March 2024</time>
+<time datetime="2024-03-05" class="published">5 March 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-09-05">5 September 2024</time></dd>
+<dd class="expires"><time datetime="2024-09-06">6 September 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1127,7 +1127,7 @@ common understanding and exposure scheme for metrics reflecting compute and comm
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 5 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 6 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1747,8 +1747,10 @@ service level,<a href="#section-6.4-3.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-6.4-3.2">
             <p id="section-6.4-3.2.1">deciding entities may only have partial access to the compute
-information and actually do not need to have all the details.
-A number of public tools and methods to test compute facility
+information and actually do not need to have all the details.<a href="#section-6.4-3.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-6.4-4">A number of public tools and methods to test compute facility
 performances are made available by cloud service providers or
 service management businesses, see <span>[<a href="#UPCLOUD" class="cite xref">UPCLOUD</a>]</span> and <span>[<a href="#IR" class="cite xref">IR</a>]</span> to name a few.
 However, for the proposed performance metrics, their definition and
@@ -1757,9 +1759,7 @@ making it thus challenging to compare performances across different
 providers. The latter aspect is particularly problematic for
 applications running at the edge where a complex ecosystem of
 operators, vendors, and application providers is involved
-and calls for a common standardized definition.<a href="#section-6.4-3.2.1" class="pilcrow">¶</a></p>
-</li>
-        </ul>
+and calls for a common standardized definition.<a href="#section-6.4-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="metric-dimensions">
@@ -1814,7 +1814,7 @@ This list is initial and is to be updated upon further discussion.<a href="#sect
           </tbody>
         </table>
 </div>
-<p id="section-6.5-4">When metrics are documented according to their life cycle action, it allow for
+<p id="section-6.5-4">When metrics are documented according to their life cycle action, it allows for
 a more reliable interpretation and informed utilization of the metrics.
 The table below provides some examples:<a href="#section-6.5-4" class="pilcrow">¶</a></p>
 <span id="name-metrics-documented-by-life-"></span><div id="metric_action">
@@ -1878,18 +1878,25 @@ The table below provides some examples:<a href="#section-6.5-4" class="pilcrow">
         <h3 id="name-distribution-and-exposure-m">
 <a href="#section-6.7" class="section-number selfRef">6.7. </a><a href="#name-distribution-and-exposure-m" class="section-name selfRef">Distribution and Exposure Mechanisms</a>
         </h3>
-<p id="section-6.7-1">Integration of network and compute metrics in decisions<a href="#section-6.7-1" class="pilcrow">¶</a></p>
 <div id="metric-distribution-computing-aware-traffic-steering-cats">
 <section id="section-6.7.1">
           <h4 id="name-metric-distribution-computi">
 <a href="#section-6.7.1" class="section-number selfRef">6.7.1. </a><a href="#name-metric-distribution-computi" class="section-name selfRef">Metric Distribution Computing-Aware Traffic Steering (CATS)</a>
           </h4>
-<p id="section-6.7.1-1">Other existing work at the IETF CATS WG has explored the collection and distribution of computing metrics in <span>[<a href="#I-D.ldbc-cats-framework" class="cite xref">I-D.ldbc-cats-framework</a>]</span>. They consider three deployment models in their deployment considerations:
-- distributed among network devices directly,
-- collected by a centralized control plane,
-- hybrid where a part of computing metrics are distributed among involved network devices, and others may be collected by a centralized control plane.
-In the hybrid mode, the draft suggests that some static information (e.g., capabilities information) can be distributed among network devices since they are quite stable. Frequent changing information (e.g., resource utilization) can be collected by a centralized control plane to avoid frequent flooding in the distributed control plane.<a href="#section-6.7.1-1" class="pilcrow">¶</a></p>
-<p id="section-6.7.1-2">Beside the required extensions to the routing protocols, the hybrid mode stresses the impact of the dynamicity of the distributed metrics and the need to carefully sort out the metric exposure mode w.r.t. their dynamicity.<a href="#section-6.7.1-2" class="pilcrow">¶</a></p>
+<p id="section-6.7.1-1">Other existing work at the IETF CATS WG has explored the collection and distribution of computing metrics in <span>[<a href="#I-D.ldbc-cats-framework" class="cite xref">I-D.ldbc-cats-framework</a>]</span>. They consider three deployment models in their deployment considerations:<a href="#section-6.7.1-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6.7.1-2.1">
+              <p id="section-6.7.1-2.1.1">distributed among network devices directly,<a href="#section-6.7.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.7.1-2.2">
+              <p id="section-6.7.1-2.2.1">collected by a centralized control plane,<a href="#section-6.7.1-2.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-6.7.1-2.3">
+              <p id="section-6.7.1-2.3.1">hybrid where a part of computing metrics are distributed among involved network devices, and others may be collected by a centralized control plane.<a href="#section-6.7.1-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<p id="section-6.7.1-3">In the hybrid mode, the draft suggests that some static information (e.g., capabilities information) can be distributed among network devices since they are quite stable. Frequent changing information (e.g., resource utilization) can be collected by a centralized control plane to avoid frequent flooding in the distributed control plane.<a href="#section-6.7.1-3" class="pilcrow">¶</a></p>
+<p id="section-6.7.1-4">Besides the required extensions to the routing protocols, the hybrid mode stresses the impact of the dynamicity of the distributed metrics and the need to carefully sort out the metric exposure mode w.r.t. their dynamicity.<a href="#section-6.7.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="metric-exposure-with-extensions-of-alto">
@@ -1930,11 +1937,13 @@ In the hybrid mode, the draft suggests that some static information (e.g., capab
         <li class="normal" id="section-7-2.3">
           <p id="section-7-2.3.1">References providing service metrics including compute-related information: <span>[<a href="#I-D.dunbar-cats-edge-service-metrics" class="cite xref">I-D.dunbar-cats-edge-service-metrics</a>]</span> proposes metrics associated to services running in compute infrastructures. Some of these metrics do not depend on the infrastructure behavior itself but from where such compute infrastructure is topologically located.<a href="#section-7-2.3.1" class="pilcrow">¶</a></p>
 </li>
-      </ul>
-<p id="section-7-3">Other existing work at the IETF CATS WG has explored the collection
+        <li class="normal" id="section-7-2.4">
+          <p id="section-7-2.4.1">Other existing work at the IETF CATS WG has explored the collection
 and distribution of computing metrics in <span>[<a href="#I-D.ldbc-cats-framework" class="cite xref">I-D.ldbc-cats-framework</a>]</span>.
 In their deployment considerations, they consider three models: distributed,
-centralized and hybrid.<a href="#section-7-3" class="pilcrow">¶</a></p>
+centralized and hybrid.<a href="#section-7-2.4.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
 </section>
 </div>
 <div id="guiding-principles">
