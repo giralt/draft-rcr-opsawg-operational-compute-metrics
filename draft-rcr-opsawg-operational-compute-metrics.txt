@@ -184,18 +184,25 @@ Table of Contents
    increase communication bandwidth, (3) increase reliability, (4)
    enable privacy nd security, (5) enable personalization, and (6)
    reduce cloud costs and energy consumption.  Services are deployed on
-   the communication and compute infrastructure through a two-phase life
-   cycle that involves first a service _deployment stage_ and then a
-   _service selection_ stage (Figure 1).
+   the communication and compute infrastructure through a phased life
+   cycle that involves first a service _deployment stage_, then a
+   _service selection_ stage, and finally a _service assurance_ stage.
 
     +-------------+      +--------------+      +-------------+
     |             |      |              |      |             |
     |  New        +------>  Service     +------>  Service    |
     |  Service    |      |  Deployment  |      |  Selection  |
     |             |      |              |      |             |
-    +-------------+      +--------------+      +-------------+
-
-                       Figure 1: Service life cycle.
+    +-------------+      +-----^--------+      +-------+-----+
+                               |                       |
+                               |                       |
+                               |                       |
+                               |    +-------------+    |
+                               |    |             |    |
+                               +----+  Service    <----+
+                                    |  Assurance  |
+                                    |             |
+                                    +-------------+
 
    *Service deployment.* This phase is carried out by the service
    provider and involves the deployment of a new service (e.g., a
@@ -245,6 +252,14 @@ Table of Contents
    query the available compute and communication resources from the
    system.
 
+   *Service assurance.* During this pase, the behavior of the service is
+   analyzed in order to endure the proper functioning of it according to
+   the aplicable Service Level Objectives (SLOs).  In case the SLOs are
+   not met, corrective actions could be decided by the network provider,
+   or requested by the service provider or application.  The assessment
+   of the service behavior can take into account both compute and
+   network metrics.
+
    Table 1 summarizes the problem space, the information that needs to
    be exposed, and the stakeholders that need this information.
 
@@ -260,6 +275,9 @@ Table of Contents
      +--------------------+---------------+--------------------------+
      | Service selection/ | Communication | Network/service and/or   |
      |     path selection |               | application              |
+     +--------------------+---------------+--------------------------+
+     |  Service assurance |  Compute and  | Network/service provider |
+     |                    | communication | and/or application       |
      +--------------------+---------------+--------------------------+
 
               Table 1: Problem space, needs, and stakeholders.
@@ -726,7 +744,7 @@ Table of Contents
 7.1.  Understanding the Kubernetes Metrics API and its Exposure
       Mechanism
 
-   Figure 2 shows the Kubernetes Metric API architecture.  It consists
+   Figure 1 shows the Kubernetes Metric API architecture.  It consists
    of the following components:
 
    *Pod*. A collection of one or more containers.
@@ -784,7 +802,7 @@ Table of Contents
             |                                                                                 |
             +---------------------------------------------------------------------------------+
 
-  Figure 2: Collection and exposure of metrics using the Kubernetes
+  Figure 1: Collection and exposure of metrics using the Kubernetes
                              Metrics API.
 
 7.2.  Example of How to Map the Kubernetes Metrics API with the IETF
@@ -797,9 +815,9 @@ Table of Contents
 
    To describe the mapping, we take the centralized model of the CATS
    metrics dissemination framework introduced in
-   [I-D.ldbc-cats-framework], which we include in Figure 3 for ease of
+   [I-D.ldbc-cats-framework], which we include in Figure 2 for ease of
    reading.  (Similar mappings can be created with the distributed and
-   hybrid models also introduced in this Figure 3)
+   hybrid models also introduced in this Figure 2)
 
                :       +------+
                :<------| C-PS |<----------------------------------+
@@ -831,7 +849,7 @@ Table of Contents
                :                                :      +-------+
                :<-------------------------------:
 
-        Figure 3: Collection and exposure of metrics using the CATS
+        Figure 2: Collection and exposure of metrics using the CATS
          Centralized Model.  (Taken from [I-D.ldbc-cats-framework])
 
    The following table provides the mapping:
